@@ -27,6 +27,7 @@
     "node_modules/",
     "benchmark.js",
     "build.js",
+    "cli.js",
     "index.js",
     "test.js",
     "component.json",
