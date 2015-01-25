@@ -1,0 +1,16 @@
+.*
+*.log
+*.sh
+bower_components/
+build/
+components/
+coverage/
+node_modules/
+benchmark.js
+build.js
+strip-markdown.js
+strip-markdown.min.js
+test.js
+bower.json
+component.json
+History.md
