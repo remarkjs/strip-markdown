@@ -17,9 +17,11 @@ pack = require('./package.json');
  * Resolve.
  */
 
-var mdast;
+var mdast,
+    strip;
 
 mdast = require.resolve('mdast/cli.js');
+strip = require.resolve('./index.js');
 
 /*
  * Arguments.
@@ -82,7 +84,7 @@ if (argv[0] === '--version' || argv[0] === '-v') {
 
     var proc;
 
-    proc = spawn(mdast, ['--use', './index.js'].concat(argv), {
+    proc = spawn(mdast, ['--use', strip].concat(argv), {
         'stdio': 'inherit'
     });
 
