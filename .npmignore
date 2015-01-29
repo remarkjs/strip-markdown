@@ -8,6 +8,7 @@ coverage/
 node_modules/
 benchmark.js
 build.js
+example.js
 strip-markdown.js
 strip-markdown.min.js
 test.js

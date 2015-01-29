@@ -28,6 +28,7 @@
     "benchmark.js",
     "build.js",
     "cli.js",
+    "example.js",
     "index.js",
     "test.js",
     "component.json",
