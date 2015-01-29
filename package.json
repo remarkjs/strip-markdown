@@ -54,7 +54,8 @@
     "benchmark": "matcha benchmark.js",
     "bundle": "browserify index.js -s stripMarkdown > strip-markdown.js",
     "postbundle": "esmangle strip-markdown.js > strip-markdown.min.js",
-    "build": "npm run bundle",
+    "build-usage": "mdast --use mdast-usage Readme.md -o Readme.md",
+    "build": "npm run bundle && npm run build-usage",
     "prepublish": "npm run build"
   }
 }

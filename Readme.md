@@ -41,11 +41,18 @@ UMD (globals/AMD/CommonJS) ([uncompressed](strip-markdown.js) and [compressed](s
 
 ## Usage
 
-```javascript
-var stripMarkdown = require('strip-markdown');
-var mdast = require('mdast').use(stripMarkdown);
+Require dependencies:
 
-mdast.stringify(mdast.parse('Some *emphasis*,  **strongness**, and `code`.'));
+```javascript
+var strip = require('strip-markdown');
+var mdast = require('mdast').use(strip);
+```
+
+Parse markdown and stringify to text:
+
+```javascript
+var ast = mdast.parse('Some *emphasis*, **strongness**, and `code`.');
+var doc = mdast.stringify(ast);
 ```
 
 Yields:
@@ -105,9 +112,9 @@ $ cat History.md | strip-markdown --use some-plugin > History.txt
 It’s pretty fast. Slower than **summarize-markdown**, but a lot cooler (such as supporting images and more).
 
 ```text
-             This project's `Readme.md`
-    801 op/s » strip-markdown -- this module
-  2,382 op/s » summarize-markdown
+           This project's `Readme.md`
+  801 op/s » strip-markdown -- this module
+2,382 op/s » summarize-markdown
 ```
 
 ## License
