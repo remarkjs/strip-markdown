@@ -24,7 +24,7 @@
     "mdast": ">=0.1.10"
   },
   "devDependencies": {
-    "browserify": "^8.0.0",
+    "browserify": "^9.0.0",
     "eslint": "^0.17.0",
     "esmangle": "^1.0.0",
     "istanbul": "^0.3.0",
