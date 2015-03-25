@@ -26,6 +26,7 @@
     "jscs-jsdoc": "^0.4.0",
     "matcha": "^0.6.0",
     "mdast": "^0.14.0-rc.1",
+    "mdast-github": "^0.2.0",
     "mdast-usage": "^0.2.0",
     "mocha": "^2.0.0",
     "summarize-markdown": "^0.3.0"

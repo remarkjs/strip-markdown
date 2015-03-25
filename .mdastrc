@@ -1,6 +1,7 @@
 {
   "plugins": [
-    "mdast-usage"
+    "mdast-usage",
+    "mdast-github"
   ],
   "settings": {
     "bullet": "*"
