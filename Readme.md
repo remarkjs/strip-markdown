@@ -67,8 +67,8 @@ Some emphasis, strongness, and code.
 
 Modifies **mdast** to expose simple plain-text.
 
-- Removes `html`, `code`, `horizontalRule`, `table`, and their content;
-- Render everything else as simple paragraphs without formatting.
+*   Removes `html`, `code`, `horizontalRule`, `table`, and their content;
+*   Render everything else as simple paragraphs without formatting.
 
 ## Benchmark
 

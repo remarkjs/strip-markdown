@@ -46,8 +46,9 @@
     "benchmark": "matcha benchmark.js",
     "bundle": "browserify index.js -s stripMarkdown > strip-markdown.js",
     "postbundle": "esmangle strip-markdown.js > strip-markdown.min.js",
-    "build-usage": "mdast --use mdast-usage Readme.md -o Readme.md",
-    "build": "npm run bundle && npm run build-usage",
+    "build-md": "mdast . --output",
+    "build-history": "mdast History.md --no-ignore --setting setext --output",
+    "build": "npm run bundle && npm run build-md && npm run build-history",
     "prepublish": "npm run build"
   }
 }
