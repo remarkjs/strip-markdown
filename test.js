@@ -29,7 +29,13 @@ describe('strip-markdown()', function () {
 
     it('should throw if not passed a node', function () {
         assert.throws(function () {
-            stripMarkdown(true);
+            stripMarkdown()(true);
+        }, /Invalid type/);
+    });
+
+    it('should not throw if not passed options', function () {
+        assert.doesNotThrow(function () {
+            stripMarkdown(mdast);
         });
     });
 

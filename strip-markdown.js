@@ -6,7 +6,7 @@
  *
  * @param {string} message
  */
-function error(message) {
+function exception(message) {
     throw new Error(message);
 }
 
@@ -75,9 +75,7 @@ function inline(token) {
  * changed (but their children are).
  */
 
-var map;
-
-map = {};
+var map = {};
 
 map.blockquote = children;
 map.list = children;
@@ -107,20 +105,11 @@ map.image = image;
  * @return {Array.<Node>}
  */
 function clean(values) {
-    var index,
-        length,
-        result,
-        value,
-        prev;
-
-    /*
-     * Clean
-     */
-
-    index = -1;
-    length = values.length;
-    result = [];
-    prev = null;
+    var index = -1;
+    var length = values.length;
+    var result = [];
+    var prev = null;
+    var value;
 
     while (++index < length) {
         value = values[index];
@@ -140,8 +129,8 @@ function clean(values) {
  * Define cleaners.
  */
 
-var strip,
-    stripAll;
+var strip;
+var stripAll;
 
 /**
  * Strip markdown formatting from a node.
@@ -150,14 +139,12 @@ var strip,
  * @return {null|Node|Array.<Node>}
  */
 strip = function (node) {
-    var type;
-
-    type = node.type;
+    var type = node && node.type;
 
     if (type in map) {
         node = map[type](node);
     } else if (typeof type !== 'string') {
-        error('Invalid type: ' + type);
+        exception('Invalid type: ' + type);
     }
 
     if (node) {
@@ -180,14 +167,10 @@ strip = function (node) {
  * @return {Array.<Node>}
  */
 stripAll = function (nodes) {
-    var index,
-        length,
-        result,
-        value;
-
-    index = -1;
-    length = nodes.length;
-    result = [];
+    var index = -1;
+    var length = nodes.length;
+    var result = [];
+    var value;
 
     while (++index < length) {
         value = strip(nodes[index]);
@@ -202,11 +185,20 @@ stripAll = function (nodes) {
     return clean(result);
 };
 
+/**
+ * Attacher
+ *
+ * @return {function(Node)}
+ */
+function attacher() {
+    return strip;
+}
+
 /*
  * Expose `strip`.
  */
 
-module.exports = strip;
+module.exports = attacher;
 
 },{}]},{},[1])(1)
 });

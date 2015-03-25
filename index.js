@@ -5,7 +5,7 @@
  *
  * @param {string} message
  */
-function error(message) {
+function exception(message) {
     throw new Error(message);
 }
 
@@ -138,12 +138,12 @@ var stripAll;
  * @return {null|Node|Array.<Node>}
  */
 strip = function (node) {
-    var type = node.type;
+    var type = node && node.type;
 
     if (type in map) {
         node = map[type](node);
     } else if (typeof type !== 'string') {
-        error('Invalid type: ' + type);
+        exception('Invalid type: ' + type);
     }
 
     if (node) {
@@ -184,8 +184,17 @@ stripAll = function (nodes) {
     return clean(result);
 };
 
+/**
+ * Attacher
+ *
+ * @return {function(Node)}
+ */
+function attacher() {
+    return strip;
+}
+
 /*
  * Expose `strip`.
  */
 
-module.exports = strip;
+module.exports = attacher;
