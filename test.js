@@ -4,13 +4,9 @@
  * Dependencies.
  */
 
-var stripMarkdown,
-    mdast,
-    assert;
-
-stripMarkdown = require('./');
-mdast = require('mdast');
-assert = require('assert');
+var stripMarkdown = require('./');
+var mdast = require('mdast');
+var assert = require('assert');
 
 /**
  * Shortcut to process markdown to text.

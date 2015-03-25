@@ -4,24 +4,16 @@
  * Dependencies.
  */
 
-var stripMarkdown,
-    summarize,
-    fs,
-    mdast;
-
-stripMarkdown = require('./');
-summarize = require('summarize-markdown');
-fs = require('fs');
-
-mdast = require('mdast').use(stripMarkdown);
+var fs = require('fs');
+var summarize = require('summarize-markdown');
+var stripMarkdown = require('./');
+var mdast = require('mdast').use(stripMarkdown);
 
 /*
  * Fixtures.
  */
 
-var fixture;
-
-fixture = fs.readFileSync('Readme.md', 'utf-8');
+var fixture = fs.readFileSync('Readme.md', 'utf-8');
 
 /**
  * Wrapper for `strip-markdown`.

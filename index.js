@@ -74,9 +74,7 @@ function inline(token) {
  * changed (but their children are).
  */
 
-var map;
-
-map = {};
+var map = {};
 
 map.blockquote = children;
 map.list = children;
@@ -106,20 +104,11 @@ map.image = image;
  * @return {Array.<Node>}
  */
 function clean(values) {
-    var index,
-        length,
-        result,
-        value,
-        prev;
-
-    /*
-     * Clean
-     */
-
-    index = -1;
-    length = values.length;
-    result = [];
-    prev = null;
+    var index = -1;
+    var length = values.length;
+    var result = [];
+    var prev = null;
+    var value;
 
     while (++index < length) {
         value = values[index];
@@ -139,8 +128,8 @@ function clean(values) {
  * Define cleaners.
  */
 
-var strip,
-    stripAll;
+var strip;
+var stripAll;
 
 /**
  * Strip markdown formatting from a node.
@@ -149,9 +138,7 @@ var strip,
  * @return {null|Node|Array.<Node>}
  */
 strip = function (node) {
-    var type;
-
-    type = node.type;
+    var type = node.type;
 
     if (type in map) {
         node = map[type](node);
@@ -179,14 +166,10 @@ strip = function (node) {
  * @return {Array.<Node>}
  */
 stripAll = function (nodes) {
-    var index,
-        length,
-        result,
-        value;
-
-    index = -1;
-    length = nodes.length;
-    result = [];
+    var index = -1;
+    var length = nodes.length;
+    var result = [];
+    var value;
 
     while (++index < length) {
         value = strip(nodes[index]);
