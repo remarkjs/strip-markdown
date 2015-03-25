@@ -63,7 +63,7 @@ Some emphasis, strongness, and code.
 
 ## API
 
-### [mdast](https://github.com/wooorm/mdast#api).[use](https://github.com/wooorm/mdast#mdastuseplugin)\(stripMarkdown\)
+### [mdast](https://github.com/wooorm/mdast#api).[use](https://github.com/wooorm/mdast#mdastuseplugin)(stripMarkdown)
 
 Modifies **mdast** to expose simple plain-text.
 
