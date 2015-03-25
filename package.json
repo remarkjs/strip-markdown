@@ -14,12 +14,6 @@
     "url": "https://github.com/wooorm/strip-markdown.git"
   },
   "author": "Titus Wormer <tituswormer@gmail.com>",
-  "bin": {
-    "strip-markdown": "cli.js"
-  },
-  "dependencies": {
-    "win-fork": "^1.0.0"
-  },
   "peerDependencies": {
     "mdast": ">=0.1.10"
   },
@@ -38,17 +32,15 @@
   },
   "scripts": {
     "test-api": "_mocha --check-leaks test.js",
-    "test-cli": "bash test.sh",
     "test-coveralls": "istanbul cover _mocha --report lcovonly -- --check-leaks test.js",
     "test-coverage": "istanbul cover _mocha -- test.js",
-    "test-travis": "npm run test-coveralls && npm run test-cli",
-    "test": "npm run test-api && npm run test-cli",
+    "test-travis": "npm run test-coveralls",
+    "test": "npm run test-api",
     "lint-api": "eslint index.js",
     "lint-benchmark": "eslint --global set,suite,bench benchmark.js",
-    "lint-cli": "eslint cli.js",
     "lint-test": "eslint --env mocha test.js",
     "lint-script": "eslint example.js",
-    "lint-style": "jscs --reporter inline index.js benchmark.js cli.js example.js test.js",
+    "lint-style": "jscs --reporter inline index.js benchmark.js example.js test.js",
     "lint": "npm run lint-api && npm run lint-benchmark && npm run lint-test && npm run lint-script && npm run lint-style",
     "make": "npm run lint && npm run test-coverage",
     "benchmark": "matcha benchmark.js",

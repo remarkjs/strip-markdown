@@ -70,43 +70,6 @@ Modifies **mdast** to expose simple plain-text.
 - Removes `html`, `code`, `horizontalRule`, `table`, and their content;
 - Render everything else as simple paragraphs without formatting.
 
-## CLI
-
-Install:
-
-```bash
-$ npm install --global strip-markdown
-```
-
-Use:
-
-```text
-Usage: strip-markdown [options] [mdast options]
-
-Remove markdown formatting
-
-Options:
-
-  -h, --help            output usage information
-  -v, --version         output version number
-
-Help for mdast:
-
-  https://github.com/wooorm/mdast
-
-Usage:
-
-# Pass `Readme.md` through strip-markdown
-$ strip-markdown Readme.md > Readme.txt
-
-# Pass stdin through strip-markdown, with mdast options
-$ echo "*Emphasis* and **strongness**" | strip-markdown --ast > ast.json
-
-# Use other plugins
-$ npm install some-plugin
-$ cat History.md | strip-markdown --use some-plugin > History.txt
-```
-
 ## Benchmark
 
 It’s pretty fast. Slower than **summarize-markdown**, but a lot cooler (such as supporting images and more).
