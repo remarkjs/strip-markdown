@@ -18,12 +18,12 @@
     "mdast": ">=0.14.0-rc.1"
   },
   "devDependencies": {
-    "browserify": "^9.0.0",
-    "eslint": "^0.17.0",
+    "browserify": "^10.0.0",
+    "eslint": "^0.21.0",
     "esmangle": "^1.0.0",
     "istanbul": "^0.3.0",
     "jscs": "^1.0.0",
-    "jscs-jsdoc": "^0.4.0",
+    "jscs-jsdoc": "^1.0.0",
     "matcha": "^0.6.0",
     "mdast": "^0.14.0-rc.1",
     "mdast-github": "^0.2.0",

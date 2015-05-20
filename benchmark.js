@@ -1,5 +1,7 @@
 'use strict';
 
+/* globals suite, bench */
+
 /*
  * Dependencies.
  */
