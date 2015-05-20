@@ -17,7 +17,7 @@ var assert = require('assert');
  * @return {string}
  */
 function strip(value) {
-    return mdast.stringify(mdast.use(stripMarkdown).parse(value)).trimRight();
+    return mdast.use(stripMarkdown).process(value).trimRight();
 }
 
 /*

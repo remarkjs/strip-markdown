@@ -9,7 +9,13 @@
 var fs = require('fs');
 var summarize = require('summarize-markdown');
 var stripMarkdown = require('./');
-var mdast = require('mdast').use(stripMarkdown);
+var mdast = require('mdast');
+
+/*
+ * Processor.
+ */
+
+var processor = mdast.use(stripMarkdown);
 
 /*
  * Fixtures.
@@ -24,7 +30,7 @@ var fixture = fs.readFileSync('Readme.md', 'utf-8');
  * @return {string}
  */
 function strip(value) {
-    return mdast.stringify(mdast.parse(value));
+    return processor.process(value);
 }
 
 /*

@@ -34,8 +34,8 @@ UMD (globals/AMD/CommonJS) ([uncompressed](strip-markdown.js) and [compressed](s
 <script src="path/to/mdast.js"></script>
 <script src="path/to/strip-markdown.js"></script>
 <script>
-  var ast = mdast.use(stripMarkdown).parse('Remove [Markdown](http://daringfireball.net/projects/markdown/syntax) formatting with [mdast](https://github.com/wooorm/mdast).');
-  mdast.stringify(ast); // "Remove Markdown formatting with mdast."
+  mdast.use(stripMarkdown).process('Remove [Markdown](http://daringfireball.net/projects/markdown/syntax) formatting with [mdast](https://github.com/wooorm/mdast).');
+  // "Remove Markdown formatting with mdast."
 </script>
 ```
 
@@ -48,11 +48,10 @@ var strip = require('strip-markdown');
 var mdast = require('mdast').use(strip);
 ```
 
-Parse markdown and stringify to text:
+Process markdown:
 
 ```javascript
-var ast = mdast.parse('Some *emphasis*, **strongness**, and `code`.');
-var doc = mdast.stringify(ast);
+var doc = mdast.process('Some *emphasis*, **strongness**, and `code`.');
 ```
 
 Yields:
