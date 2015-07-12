@@ -49,7 +49,6 @@
     "postbundle": "esmangle strip-markdown.js > strip-markdown.min.js",
     "build-md": "mdast . --output",
     "build-history": "mdast History.md --no-ignore --setting setext:true --output",
-    "build": "npm run bundle && npm run build-md && npm run build-history",
-    "prepublish": "npm run build"
+    "build": "npm run bundle && npm run build-md && npm run build-history"
   }
 }
