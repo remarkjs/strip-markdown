@@ -5,6 +5,11 @@ mdast:
 
 <!--lint disable no-multiple-toplevel-headings -->
 
+0.3.1 / 2015-07-13
+==================
+
+*   Remove peer-dependencies ([8841d3f](https://github.com/wooorm/strip-markdown/commit/8841d3f))
+
 0.3.0 / 2015-05-20
 ==================
 
