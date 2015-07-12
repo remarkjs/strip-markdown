@@ -1,25 +1,26 @@
 # strip-markdown [![Build Status](https://img.shields.io/travis/wooorm/strip-markdown.svg?style=flat)](https://travis-ci.org/wooorm/strip-markdown) [![Coverage Status](https://img.shields.io/coveralls/wooorm/strip-markdown.svg?style=flat)](https://coveralls.io/r/wooorm/strip-markdown?branch=master)
 
-Remove [Markdown](http://daringfireball.net/projects/markdown/syntax) formatting with [mdast](https://github.com/wooorm/mdast).
+Remove [Markdown](http://daringfireball.net/projects/markdown/syntax)
+formatting with [mdast](https://github.com/wooorm/mdast).
 
 ## Installation
 
 [npm](https://docs.npmjs.com/cli/install):
 
 ```bash
-$ npm install strip-markdown
+npm install strip-markdown
 ```
 
 [Component.js](https://github.com/componentjs/component):
 
 ```bash
-$ component install wooorm/strip-markdown
+component install wooorm/strip-markdown
 ```
 
 [Bower](http://bower.io/#install-packages):
 
 ```bash
-$ bower install strip-markdown
+bower install strip-markdown
 ```
 
 [Duo](http://duojs.org/#getting-started):
@@ -71,7 +72,8 @@ Modifies **mdast** to expose simple plain-text.
 
 ## Benchmark
 
-It’s pretty fast. Slower than **summarize-markdown**, but a lot cooler (such as supporting images and more).
+It’s pretty fast. Slower than **summarize-markdown**, but a lot cooler
+(such as supporting images and more).
 
 ```text
            This project's `Readme.md`

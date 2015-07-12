@@ -1,8 +1,18 @@
+---
+mdast:
+  setext: true
+---
+
+<!--lint disable no-multiple-toplevel-headings -->
+
 0.3.0 / 2015-05-20
 ==================
 
-*   Fix example, benchmark, test for changes in mdast ([f7b70f1](https://github.com/wooorm/strip-markdown/commit/f7b70f1), closes [GH-1](https://github.com/wooorm/strip-markdown/issues/1))
+*   Fix example, benchmark, test for changes in mdast ([f7b70f1](https://github.com/wooorm/strip-markdown/commit/f7b70f1),
+    closes [GH-1](https://github.com/wooorm/strip-markdown/issues/1))
+
 *   Update mdast ([05c8826](https://github.com/wooorm/strip-markdown/commit/05c8826))
+
 *   Update browserify, eslint, jscs-jsdoc ([3968425](https://github.com/wooorm/strip-markdown/commit/3968425))
 
 0.2.0 / 2015-03-25
