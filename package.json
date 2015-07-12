@@ -14,9 +14,6 @@
     "url": "https://github.com/wooorm/strip-markdown.git"
   },
   "author": "Titus Wormer <tituswormer@gmail.com>",
-  "peerDependencies": {
-    "mdast": ">=0.20.0"
-  },
   "devDependencies": {
     "browserify": "^10.0.0",
     "eslint": "^0.24.0",
