@@ -9,44 +9,53 @@
     "plain",
     "text"
   ],
-  "repository": {
-    "type": "git",
-    "url": "https://github.com/wooorm/strip-markdown.git"
+  "repository": "https://github.com/wooorm/strip-markdown",
+  "bugs": "https://github.com/wooorm/strip-markdown/issues",
+  "author": "Titus Wormer <tituswormer@gmail.com> (http://wooorm.com)",
+  "contributors": [
+    "Titus Wormer <tituswormer@gmail.com> (http://wooorm.com)"
+  ],
+  "engines": {
+    "node": ">=0.11.0"
   },
-  "author": "Titus Wormer <tituswormer@gmail.com>",
+  "files": [
+    "index.js"
+  ],
+  "dependencies": {},
   "devDependencies": {
-    "browserify": "^10.0.0",
-    "eslint": "^0.24.0",
+    "browserify": "^13.0.0",
     "esmangle": "^1.0.0",
-    "istanbul": "^0.3.0",
-    "jscs": "^1.0.0",
-    "jscs-jsdoc": "^1.0.0",
-    "matcha": "^0.6.0",
-    "mdast": "^0.26.0",
-    "mdast-github": "^0.3.0",
-    "mdast-lint": "^0.4.2",
-    "mdast-usage": "^0.3.0",
-    "mdast-yaml-config": "^0.2.1",
-    "mocha": "^2.0.0",
-    "summarize-markdown": "^0.3.0"
+    "nyc": "^8.3.0",
+    "remark": "^6.0.1",
+    "remark-cli": "^2.0.0",
+    "remark-preset-wooorm": "^1.0.0",
+    "tape": "^4.4.0",
+    "xo": "^0.16.0"
   },
   "scripts": {
-    "test-api": "mocha --check-leaks test.js",
-    "test-coveralls": "istanbul cover _mocha --report lcovonly -- --check-leaks test.js",
-    "test-coverage": "istanbul cover _mocha -- test.js",
-    "test-travis": "npm run test-coveralls",
-    "test": "npm run test-api",
-    "lint-api": "eslint index.js",
-    "lint-benchmark": "eslint --global set,suite,bench benchmark.js",
-    "lint-test": "eslint --env mocha test.js",
-    "lint-script": "eslint example.js",
-    "lint-style": "jscs --reporter inline index.js benchmark.js example.js test.js",
-    "lint": "npm run lint-api && npm run lint-benchmark && npm run lint-test && npm run lint-script && npm run lint-style",
-    "make": "npm run lint && npm run test-coverage",
-    "benchmark": "matcha benchmark.js",
-    "bundle": "browserify index.js -s stripMarkdown > strip-markdown.js",
-    "postbundle": "esmangle strip-markdown.js > strip-markdown.min.js",
-    "build-md": "mdast . --output --quiet",
-    "build": "npm run bundle && npm run build-md"
+    "build-md": "remark . --quiet --frail",
+    "build-bundle": "browserify index.js -s stripMarkdown > strip-markdown.js",
+    "build-mangle": "esmangle strip-markdown.js > strip-markdown.min.js",
+    "build": "npm run build-md && npm run build-bundle && npm run build-mangle",
+    "lint": "xo",
+    "test-api": "node test",
+    "test-coverage": "nyc --reporter lcov tape test/index.js",
+    "test": "npm run build && npm run lint && npm run test-coverage"
+  },
+  "nyc": {
+    "check-coverage": true,
+    "lines": 100,
+    "functions": 100,
+    "branches": 100
+  },
+  "xo": {
+    "space": true,
+    "ignores": [
+      "strip-markdown.js"
+    ]
+  },
+  "remarkConfig": {
+    "output": true,
+    "presets": "wooorm"
   }
 }

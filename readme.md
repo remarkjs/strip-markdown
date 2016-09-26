@@ -1,58 +1,35 @@
-# strip-markdown [![Build Status](https://img.shields.io/travis/wooorm/strip-markdown.svg?style=flat)](https://travis-ci.org/wooorm/strip-markdown) [![Coverage Status](https://img.shields.io/coveralls/wooorm/strip-markdown.svg?style=flat)](https://coveralls.io/r/wooorm/strip-markdown?branch=master)
+# strip-markdown [![Build Status][travis-badge]][travis] [![Coverage Status][codecov-badge]][codecov]
 
-Remove [Markdown](http://daringfireball.net/projects/markdown/syntax)
-formatting with [mdast](https://github.com/wooorm/mdast).
+Remove Markdown formatting with [**remark**][remark].
+
+This essentially removes everything but paragraphs and text nodes.
+
+> This is one of the first remark plugins, before prefixing with
+> `remark-` got cool.
 
 ## Installation
 
-[npm](https://docs.npmjs.com/cli/install):
+[npm][npm-install]:
 
 ```bash
 npm install strip-markdown
 ```
 
-[Component.js](https://github.com/componentjs/component):
-
-```bash
-component install wooorm/strip-markdown
-```
-
-[Bower](http://bower.io/#install-packages):
-
-```bash
-bower install strip-markdown
-```
-
-[Duo](http://duojs.org/#getting-started):
-
-```javascript
-var stripMarkdown = require('wooorm/strip-markdown');
-```
-
-UMD (globals/AMD/CommonJS) ([uncompressed](strip-markdown.js) and [compressed](strip-markdown.min.js)):
-
-```html
-<script src="path/to/mdast.js"></script>
-<script src="path/to/strip-markdown.js"></script>
-<script>
-  mdast.use(stripMarkdown).process('Remove [Markdown](http://daringfireball.net/projects/markdown/syntax) formatting with [mdast](https://github.com/wooorm/mdast).');
-  // "Remove Markdown formatting with mdast."
-</script>
-```
-
 ## Usage
 
-Require dependencies:
+Dependencies:
 
 ```javascript
 var strip = require('strip-markdown');
-var mdast = require('mdast').use(strip);
+var remark = require('remark');
+var processor = remark().use(strip);
 ```
 
-Process markdown:
+Process:
 
 ```javascript
-var doc = mdast.process('Some *emphasis*, **strongness**, and `code`.');
+var file = processor.process('Some *emphasis*, **strongness**, and `code`.');
+var doc = String(file);
 ```
 
 Yields:
@@ -63,24 +40,32 @@ Some emphasis, strongness, and code.
 
 ## API
 
-### [mdast](https://github.com/wooorm/mdast#api).[use](https://github.com/wooorm/mdast#mdastuseplugin)(stripMarkdown)
+### `remark().use(strip)`
 
-Modifies **mdast** to expose simple plain-text.
+Modifies **remark** to expose plain-text.
 
 *   Removes `html`, `code`, `horizontalRule`, `table`, and their content;
 *   Render everything else as simple paragraphs without formatting.
-
-## Benchmark
-
-It’s pretty fast. Slower than **summarize-markdown**, but a lot cooler
-(such as supporting images and more).
-
-```text
-           This project's `Readme.md`
-  801 op/s » strip-markdown -- this module
-2,382 op/s » summarize-markdown
-```
+*   Uses `alt` text for images.
 
 ## License
 
-[MIT](LICENSE) © [Titus Wormer](http://wooorm.com)
+[MIT][license] © [Titus Wormer][author]
+
+<!-- Definitions -->
+
+[travis-badge]: https://img.shields.io/travis/wooorm/to-vfile.svg
+
+[travis]: https://travis-ci.org/wooorm/to-vfile
+
+[codecov-badge]: https://img.shields.io/codecov/c/github/wooorm/to-vfile.svg
+
+[codecov]: https://codecov.io/github/wooorm/to-vfile
+
+[npm-install]: https://docs.npmjs.com/cli/install
+
+[license]: LICENSE
+
+[author]: http://wooorm.com
+
+[remark]: https://github.com/wooorm/remark

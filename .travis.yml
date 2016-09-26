@@ -1,9 +1,24 @@
 language: node_js
-script: npm run-script test-travis
 node_js:
-- '0.10'
 - '0.11'
-- '0.12'
-- iojs
-sudo: false
-after_script: npm install coveralls@2.10.0 && cat ./coverage/lcov.info | coveralls
+- '5.0'
+- '6.0'
+after_success:
+- bash <(curl -s https://codecov.io/bash)
+deploy:
+  - provider: npm
+    email: tituswormer@gmail.com
+    api_key:
+      secure: xRc8HeFR9M5ZSBH4kj7TBDlyeaFpT2EK+4XGcn3x2eKlR4vdj1EQls8qbGdu3YZaQ0Q+AEILOKmsZZBNCiV5IuZjFMQFwMZpMCEC4SpNvmC33Wy6iEbblg+PnU2xWe9EanIuwOSI3XO3Xr5sgXvJaRpg2zhZhvwgFPKuovxinV4=
+    on:
+      tags: true
+      node: '5.0'
+  - provider: releases
+    api_key:
+      secure: aljGeSHmOn4ycz4O4/VGdP+96PNJwUEA7YFDxt9ToUpD6NvvirxJOFWntMpikelwXP3+c6+DIy7RhJgemuniv+Gq9NplNNQV4JF1hwBuEGjg4VSglRBpaP5EeqeWRkrfu5M59X7eywhbvKDJxqWjuY6vkHEXP28/tH/0S6kEujA=
+    file:
+      - "strip-markdown.js"
+      - "strip-markdown.min.js"
+    on:
+      tags: true
+      node: '6.0'

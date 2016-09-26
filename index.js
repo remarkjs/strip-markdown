@@ -1,101 +1,76 @@
-'use strict';
-
 /**
- * Throw.
- *
- * @param {string} message
+ * @author Titus Wormer
+ * @copyright 2015 Titus Wormer
+ * @license MIT
+ * @module strip-markdown
+ * @fileoverview Remove markdown formatting.
  */
-function exception(message) {
-    throw new Error(message);
+
+/* Expose `strip`. */
+module.exports = strip;
+
+/* Attacher. */
+function strip() {
+  return one;
 }
 
-/**
- * Return nothing.
- *
- * @return {null}
- */
-function empty() {
-    return null;
-}
-
-/**
- * Return an stringified image.
- *
- * @param {Image} token
- * @return {Node}
- */
-function image(token) {
-    return {
-        'type': 'text',
-        'value': token.alt || token.title || ''
-    };
-}
-
-/**
- * Return the concatenation of `token`s children.
- *
- * @param {Object} token
- * @return {Array.<Node>}
- */
-function children(token) {
-    return token.children;
-}
-
-/**
- * Return the concatenation of `token`s children.
- *
- * @param {Object} token
- * @return {Node}
- */
-function paragraph(token) {
-    return {
-        'type': 'paragraph',
-        'children': token.children
-    };
-}
-
-/**
- * Return `token`s value.
- *
- * @param {Object} token
- * @return {Node}
- */
-function inline(token) {
-    return {
-        'type': 'text',
-        'value': token.value
-    };
-}
-
-/*
- * Expose modifiers for available node types.
- *
- * Node types not listed here are not
- * changed (but their children are).
- */
-
+/* Expose modifiers for available node types.
+ * Node types not listed here are not changed
+ * (but their children are). */
 var map = {};
 
-map.blockquote = children;
-map.list = children;
-map.listItem = children;
-map.strong = children;
-map.emphasis = children;
-map.delete = children;
-map.link = children;
-
 map.heading = paragraph;
-
-map.text = inline;
-map.inlineCode = inline;
-
-map.code = empty;
-map.html = empty;
-map.horizontalRule = empty;
-map.table = empty;
-map.tableCell = empty;
-
+map.text = map.inlineCode = text;
 map.image = image;
+
+map.blockquote = map.list = map.listItem = map.strong =
+  map.emphasis = map.delete = map.link = children;
+
+map.code = map.horizontalRule = map.thematicBreak = map.html =
+  map.table = map.tableCell = empty;
+
+/* One node. */
+function one(node) {
+  var type = node && node.type;
+
+  if (type in map) {
+    node = map[type](node);
+  } else if (typeof type !== 'string') {
+    throw new Error('Invalid type: ' + type);
+  }
+
+  if (node) {
+    if (node.length) {
+      node = all(node);
+    }
+
+    if (node.children) {
+      node.children = all(node.children);
+    }
+  }
+
+  return node;
+}
+
+/* Multiple nodes. */
+function all(nodes) {
+  var index = -1;
+  var length = nodes.length;
+  var result = [];
+  var value;
+
+  while (++index < length) {
+    value = one(nodes[index]);
+
+    if (value && value.length) {
+      result = result.concat(value.map(one));
+    } else if (value) {
+      result.push(value);
+    }
+  }
+
+  return clean(result);
+}
 
 /**
  * Clean nodes: merges text's.
@@ -104,97 +79,50 @@ map.image = image;
  * @return {Array.<Node>}
  */
 function clean(values) {
-    var index = -1;
-    var length = values.length;
-    var result = [];
-    var prev = null;
-    var value;
+  var index = -1;
+  var length = values.length;
+  var result = [];
+  var prev = null;
+  var value;
 
-    while (++index < length) {
-        value = values[index];
+  while (++index < length) {
+    value = values[index];
 
-        if (prev && 'value' in value && value.type === prev.type) {
-            prev.value += value.value;
-        } else {
-            result.push(value);
-            prev = value;
-        }
+    if (prev && 'value' in value && value.type === prev.type) {
+      prev.value += value.value;
+    } else {
+      result.push(value);
+      prev = value;
     }
+  }
 
-    return result;
+  return result;
 }
 
-/*
- * Define cleaners.
- */
-
-var strip;
-var stripAll;
-
-/**
- * Strip markdown formatting from a node.
- *
- * @param {Node} node
- * @return {null|Node|Array.<Node>}
- */
-strip = function (node) {
-    var type = node && node.type;
-
-    if (type in map) {
-        node = map[type](node);
-    } else if (typeof type !== 'string') {
-        exception('Invalid type: ' + type);
-    }
-
-    if (node) {
-        if (node.length) {
-            node = stripAll(node);
-        }
-
-        if (node.children) {
-            node.children = stripAll(node.children);
-        }
-    }
-
-    return node;
-};
-
-/**
- * Strip markdown formatting from multiple nodes.
- *
- * @param {Array.<Node>} nodes
- * @return {Array.<Node>}
- */
-stripAll = function (nodes) {
-    var index = -1;
-    var length = nodes.length;
-    var result = [];
-    var value;
-
-    while (++index < length) {
-        value = strip(nodes[index]);
-
-        if (value && value.length) {
-            result = result.concat(value.map(strip));
-        } else if (value) {
-            result.push(value);
-        }
-    }
-
-    return clean(result);
-};
-
-/**
- * Attacher
- *
- * @return {function(Node)}
- */
-function attacher() {
-    return strip;
+/* Return an stringified image. */
+function image(token) {
+  return {
+    type: 'text',
+    value: token.alt || token.title || ''
+  };
 }
 
-/*
- * Expose `strip`.
- */
+/* Return `token`s value. */
+function text(token) {
+  return {type: 'text', value: token.value};
+}
 
-module.exports = attacher;
+/* Return a paragraph. */
+function paragraph(token) {
+  return {type: 'paragraph', children: token.children};
+}
+
+/* Return the concatenation of `token`s children. */
+function children(token) {
+  return token.children;
+}
+
+/* Return nothing. */
+function empty() {
+  return null;
+}
