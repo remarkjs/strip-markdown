@@ -124,5 +124,5 @@ function children(token) {
 
 /* Return nothing. */
 function empty() {
-  return null;
+  return {type: 'text', value: ''};
 }
