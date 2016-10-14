@@ -45,6 +45,12 @@ test('stripMarkdown()', function (t) {
   );
 
   t.equal(
+    proc('- Hello\n- \n- World!'),
+    'Hello\n\nWorld!',
+    'empty list item'
+  );
+
+  t.equal(
     proc('> Hello\n> World\n> !'),
     'Hello\nWorld\n!',
     'blockquote'

@@ -62,7 +62,7 @@ function all(nodes) {
   while (++index < length) {
     value = one(nodes[index]);
 
-    if (value && value.length) {
+    if (value && typeof value.length === 'number') {
       result = result.concat(value.map(one));
     } else if (value) {
       result.push(value);
