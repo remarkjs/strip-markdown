@@ -11,6 +11,7 @@
 /* Dependencies. */
 var test = require('tape');
 var remark = require('remark');
+var u = require('unist-builder');
 var strip = require('./');
 
 function proc(value) {
@@ -19,6 +20,22 @@ function proc(value) {
 
 /* API. */
 test('stripMarkdown()', function (t) {
+  t.deepEqual(
+    remark().use(strip).run(u('root', [
+      u('unknown', [
+        u('strong', [u('text', 'value')])
+      ]),
+      u('anotherUnknown', 'with value')
+    ])),
+    u('root', [
+      u('unknown', [
+        u('text', 'value')
+      ]),
+      u('anotherUnknown', 'with value')
+    ]),
+    'should keep unknown nodes'
+  );
+
   t.equal(proc('Alfred'), 'Alfred', 'text');
   t.equal(proc('*Alfred*'), 'Alfred', 'emphasis (1)');
   t.equal(proc('_Alfred_'), 'Alfred', 'emphasis (2)');

@@ -35,18 +35,14 @@ function one(node) {
 
   if (type in map) {
     node = map[type](node);
-  } else if (typeof type !== 'string') {
-    throw new Error('Invalid type: ' + type);
   }
 
-  if (node) {
-    if (node.length) {
-      node = all(node);
-    }
+  if (node.length) {
+    node = all(node);
+  }
 
-    if (node.children) {
-      node.children = all(node.children);
-    }
+  if (node.children) {
+    node.children = all(node.children);
   }
 
   return node;
@@ -64,7 +60,7 @@ function all(nodes) {
 
     if (value && typeof value.length === 'number') {
       result = result.concat(value.map(one));
-    } else if (value) {
+    } else {
       result.push(value);
     }
   }
