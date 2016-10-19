@@ -13,7 +13,8 @@
   "bugs": "https://github.com/wooorm/strip-markdown/issues",
   "author": "Titus Wormer <tituswormer@gmail.com> (http://wooorm.com)",
   "contributors": [
-    "Titus Wormer <tituswormer@gmail.com> (http://wooorm.com)"
+    "Titus Wormer <tituswormer@gmail.com> (http://wooorm.com)",
+    "Ohtake Tomohiro <ohtake.tomohiro@jp.fujitsu.com>"
   ],
   "engines": {
     "node": ">=0.11.0"
