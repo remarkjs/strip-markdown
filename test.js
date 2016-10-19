@@ -77,6 +77,7 @@ test('stripMarkdown()', function (t) {
   t.equal(proc('![An image](image.png "test")'), 'An image', 'image (1)');
   t.equal(proc('![](image.png "test")'), 'test', 'image (2)');
   t.equal(proc('![](image.png)'), '', 'image (3)');
+  t.equal(proc('![An image][id]\n\n[id]: http://example.com/a.jpg'), 'An image', 'reference-style image');
 
   t.equal(proc('---'), '', 'thematic break');
   t.equal(proc('| A | B |\n| - | - |\n| C | D |'), '', 'table');
