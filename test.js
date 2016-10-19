@@ -80,6 +80,8 @@ test('stripMarkdown()', function (t) {
   t.equal(proc('![An image][id]\n\n[id]: http://example.com/a.jpg'), 'An image', 'reference-style image');
 
   t.equal(proc('---'), '', 'thematic break');
+  t.equal(proc('A  \nB'), 'A\nB', 'hard line break');
+  t.equal(proc('A\nB'), 'A\nB', 'soft line break');
   t.equal(proc('| A | B |\n| - | - |\n| C | D |'), '', 'table');
   t.equal(proc('\talert("hello");'), '', 'code (1)');
   t.equal(proc('```js\nconsole.log("world");\n```'), '', 'code (2)');

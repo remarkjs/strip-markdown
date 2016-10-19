@@ -22,6 +22,7 @@ var map = {};
 map.heading = paragraph;
 map.text = map.inlineCode = text;
 map.image = map.imageReference = image;
+map.break = lineBreak;
 
 map.blockquote = map.list = map.listItem = map.strong =
   map.emphasis = map.delete = map.link = map.linkReference = children;
@@ -116,6 +117,11 @@ function paragraph(token) {
 /* Return the concatenation of `token`s children. */
 function children(token) {
   return token.children;
+}
+
+/* Return line break. */
+function lineBreak() {
+  return {type: 'text', value: '\n'};
 }
 
 /* Return nothing. */
