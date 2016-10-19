@@ -21,7 +21,7 @@ var map = {};
 
 map.heading = paragraph;
 map.text = map.inlineCode = text;
-map.image = image;
+map.image = map.imageReference = image;
 
 map.blockquote = map.list = map.listItem = map.strong =
   map.emphasis = map.delete = map.link = map.linkReference = children;
