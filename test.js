@@ -45,6 +45,7 @@ test('stripMarkdown()', function (t) {
   t.equal(proc('`Alfred`'), 'Alfred', 'inline code');
   t.equal(proc('[Hello](world)'), 'Hello', 'link');
   t.equal(proc('[**H**ello](world)'), 'Hello', 'importance in link');
+  t.equal(proc('[Hello][id]\n\n[id]: http://example.com "optional title"'), 'Hello', 'reference-style link');
   t.equal(proc('Hello.\n\nWorld.'), 'Hello.\n\nWorld.', 'paragraph');
   t.equal(proc('## Alfred'), 'Alfred', 'headings (atx)');
   t.equal(proc('Alfred\n====='), 'Alfred', 'headings (setext)');
