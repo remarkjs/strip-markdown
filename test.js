@@ -86,6 +86,7 @@ test('stripMarkdown()', function (t) {
   t.equal(proc('<sup>Hello</sup>'), 'Hello', 'html (1)');
   t.equal(proc('<script>alert("world");</script>'), '', 'html (2)');
   t.equal(proc('[<img src="http://example.com/a.jpg" />](http://example.com)'), '', 'html (3)');
+  t.equal(proc('---\ntitle: title\ndescription: description\n---'), '', 'yaml');
 
   t.end();
 });

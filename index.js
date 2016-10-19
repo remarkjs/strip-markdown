@@ -27,7 +27,7 @@ map.blockquote = map.list = map.listItem = map.strong =
   map.emphasis = map.delete = map.link = map.linkReference = children;
 
 map.code = map.horizontalRule = map.thematicBreak = map.html =
-  map.table = map.tableCell = map.definition = empty;
+  map.table = map.tableCell = map.definition = map.yaml = empty;
 
 /* One node. */
 function one(node) {
