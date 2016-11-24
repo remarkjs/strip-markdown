@@ -17,25 +17,20 @@ npm install strip-markdown
 
 ## Usage
 
-Dependencies:
-
 ```javascript
 var strip = require('strip-markdown');
 var remark = require('remark');
 var processor = remark().use(strip);
-```
 
-Process:
+var file = processor.process('Some _emphasis_, **importance**, and `code`.');
 
-```javascript
-var file = processor.process('Some *emphasis*, **strongness**, and `code`.');
-var doc = String(file);
+console.log(String(file));
 ```
 
 Yields:
 
 ```text
-Some emphasis, strongness, and code.
+Some emphasis, importance, and code.
 ```
 
 ## API
