@@ -1,15 +1,5 @@
-/**
- * @author Titus Wormer
- * @copyright 2015 Titus Wormer
- * @license MIT
- * @module strip-markdown
- * @fileoverview Remove markdown formatting.
- */
-
-/* Expose `strip`. */
 module.exports = strip;
 
-/* Attacher. */
 function strip() {
   return one;
 }
@@ -69,12 +59,7 @@ function all(nodes) {
   return clean(result);
 }
 
-/**
- * Clean nodes: merges text's.
- *
- * @param {Array.<Node>} values
- * @return {Array.<Node>}
- */
+/* Clean nodes: merges text's. */
 function clean(values) {
   var index = -1;
   var length = values.length;

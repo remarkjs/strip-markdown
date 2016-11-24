@@ -1,14 +1,5 @@
-/**
- * @author Titus Wormer
- * @copyright 2015 Titus Wormer
- * @license MIT
- * @module strip-markdown
- * @fileoverview Test suite for `strip-markdown`.
- */
-
 'use strict';
 
-/* Dependencies. */
 var test = require('tape');
 var remark = require('remark');
 var u = require('unist-builder');
@@ -18,7 +9,6 @@ function proc(value) {
   return remark().use(strip).process(value).toString().trimRight();
 }
 
-/* API. */
 test('stripMarkdown()', function (t) {
   t.deepEqual(
     remark().use(strip).run(u('root', [
