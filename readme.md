@@ -22,7 +22,7 @@ var strip = require('strip-markdown');
 var remark = require('remark');
 var processor = remark().use(strip);
 
-var file = processor.process('Some _emphasis_, **importance**, and `code`.');
+var file = processor.processSync('Some _emphasis_, **importance**, and `code`.');
 
 console.log(String(file));
 ```

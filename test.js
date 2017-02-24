@@ -6,12 +6,12 @@ var u = require('unist-builder');
 var strip = require('./');
 
 function proc(value) {
-  return remark().use(strip).process(value).toString().trimRight();
+  return remark().use(strip).processSync(value).toString().trimRight();
 }
 
 test('stripMarkdown()', function (t) {
   t.deepEqual(
-    remark().use(strip).run(u('root', [
+    remark().use(strip).runSync(u('root', [
       u('unknown', [
         u('strong', [u('text', 'value')])
       ]),
