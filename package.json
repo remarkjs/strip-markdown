@@ -32,7 +32,7 @@
     "remark-preset-wooorm": "^2.0.0",
     "tape": "^4.4.0",
     "unist-builder": "^1.0.2",
-    "xo": "^0.17.0"
+    "xo": "^0.18.0"
   },
   "scripts": {
     "build-md": "remark . -qfo",
@@ -52,7 +52,9 @@
   },
   "xo": {
     "space": true,
+    "esnext": false,
     "rules": {
+      "no-multi-assign": "off",
       "unicorn/explicit-length-check": "off"
     },
     "ignores": [
