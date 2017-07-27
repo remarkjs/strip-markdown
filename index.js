@@ -10,15 +10,29 @@ function strip() {
 var map = {};
 
 map.heading = paragraph;
-map.text = map.inlineCode = text;
-map.image = map.imageReference = image;
+map.text = text;
+map.inlineCode = text;
+map.image = image;
+map.imageReference = image;
 map.break = lineBreak;
 
-map.blockquote = map.list = map.listItem = map.strong =
-  map.emphasis = map.delete = map.link = map.linkReference = children;
+map.blockquote = children;
+map.list = children;
+map.listItem = children;
+map.strong = children;
+map.emphasis = children;
+map.delete = children;
+map.link = children;
+map.linkReference = children;
 
-map.code = map.horizontalRule = map.thematicBreak = map.html =
-  map.table = map.tableCell = map.definition = map.yaml = empty;
+map.code = empty;
+map.horizontalRule = empty;
+map.thematicBreak = empty;
+map.html = empty;
+map.table = empty;
+map.tableCell = empty;
+map.definition = empty;
+map.yaml = empty;
 
 /* One node. */
 function one(node) {
@@ -28,7 +42,7 @@ function one(node) {
     node = map[type](node);
   }
 
-  if (node.length) {
+  if ('length' in node) {
     node = all(node);
   }
 

@@ -50,10 +50,6 @@
   "xo": {
     "space": true,
     "esnext": false,
-    "rules": {
-      "no-multi-assign": "off",
-      "unicorn/explicit-length-check": "off"
-    },
     "ignores": [
       "strip-markdown.js"
     ]
