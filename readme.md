@@ -9,7 +9,7 @@ This essentially removes everything but paragraphs and text nodes.
 
 ## Installation
 
-[npm][npm-install]:
+[npm][]:
 
 ```bash
 npm install strip-markdown
@@ -18,13 +18,15 @@ npm install strip-markdown
 ## Usage
 
 ```javascript
-var strip = require('strip-markdown');
 var remark = require('remark');
-var processor = remark().use(strip);
+var strip = require('strip-markdown');
 
-var file = processor.processSync('Some _emphasis_, **importance**, and `code`.');
-
-console.log(String(file));
+remark()
+  .use(strip)
+  .process('Some _emphasis_, **importance**, and `code`.', function (err, file) {
+    if (err) throw err;
+    console.log(String(file));
+  });
 ```
 
 Yields:
@@ -39,9 +41,9 @@ Some emphasis, importance, and code.
 
 Modifies **remark** to expose plain-text.
 
-*   Removes `html`, `code`, `horizontalRule`, `table`, and their content;
-*   Render everything else as simple paragraphs without formatting.
-*   Uses `alt` text for images.
+*   Removes `html`, `code`, `horizontalRule`, `table`, and their content
+*   Render everything else as simple paragraphs without formatting
+*   Uses `alt` text for images
 
 ## License
 
@@ -57,7 +59,7 @@ Modifies **remark** to expose plain-text.
 
 [codecov]: https://codecov.io/github/wooorm/strip-markdown
 
-[npm-install]: https://docs.npmjs.com/cli/install
+[npm]: https://docs.npmjs.com/cli/install
 
 [license]: LICENSE
 
