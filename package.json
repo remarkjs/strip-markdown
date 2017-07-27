@@ -9,16 +9,13 @@
     "plain",
     "text"
   ],
-  "repository": "https://github.com/wooorm/strip-markdown",
+  "repository": "wooorm/strip-markdown",
   "bugs": "https://github.com/wooorm/strip-markdown/issues",
   "author": "Titus Wormer <tituswormer@gmail.com> (http://wooorm.com)",
   "contributors": [
     "Titus Wormer <tituswormer@gmail.com> (http://wooorm.com)",
     "Ohtake Tomohiro <ohtake.tomohiro@jp.fujitsu.com>"
   ],
-  "engines": {
-    "node": ">=0.11.0"
-  },
   "files": [
     "index.js"
   ],
@@ -62,6 +59,8 @@
     ]
   },
   "remarkConfig": {
-    "plugins": ["preset-wooorm"]
+    "plugins": [
+      "preset-wooorm"
+    ]
   }
 }
