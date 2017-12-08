@@ -45,6 +45,13 @@ Modifies **remark** to expose plain-text.
 *   Render everything else as simple paragraphs without formatting
 *   Uses `alt` text for images
 
+## Contribute
+
+See [`contribute.md` in `remarkjs/remarkj`][contribute] for ways to get started.
+
+This organisation has a [Code of Conduct][coc].  By interacting with this
+repository, organisation, or community you agree to abide by its terms.
+
 ## License
 
 [MIT][license] © [Titus Wormer][author]
@@ -66,3 +73,7 @@ Modifies **remark** to expose plain-text.
 [author]: http://wooorm.com
 
 [remark]: https://github.com/remarkjs/remark
+
+[contribute]: https://github.com/remarkjs/remark/blob/master/contributing.md
+
+[coc]: https://github.com/remarkjs/remark/blob/master/code-of-conduct.md
