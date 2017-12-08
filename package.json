@@ -9,8 +9,8 @@
     "plain",
     "text"
   ],
-  "repository": "wooorm/strip-markdown",
-  "bugs": "https://github.com/wooorm/strip-markdown/issues",
+  "repository": "remarkjs/strip-markdown",
+  "bugs": "https://github.com/remarkjs/strip-markdown/issues",
   "author": "Titus Wormer <tituswormer@gmail.com> (http://wooorm.com)",
   "contributors": [
     "Titus Wormer <tituswormer@gmail.com> (http://wooorm.com)",

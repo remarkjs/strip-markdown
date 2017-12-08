@@ -51,13 +51,13 @@ Modifies **remark** to expose plain-text.
 
 <!-- Definitions -->
 
-[travis-badge]: https://img.shields.io/travis/wooorm/strip-markdown.svg
+[travis-badge]: https://img.shields.io/travis/remarkjs/strip-markdown.svg
 
-[travis]: https://travis-ci.org/wooorm/strip-markdown
+[travis]: https://travis-ci.org/remarkjs/strip-markdown
 
-[codecov-badge]: https://img.shields.io/codecov/c/github/wooorm/strip-markdown.svg
+[codecov-badge]: https://img.shields.io/codecov/c/github/remarkjs/strip-markdown.svg
 
-[codecov]: https://codecov.io/github/wooorm/strip-markdown
+[codecov]: https://codecov.io/github/remarkjs/strip-markdown
 
 [npm]: https://docs.npmjs.com/cli/install
 
@@ -65,4 +65,4 @@ Modifies **remark** to expose plain-text.
 
 [author]: http://wooorm.com
 
-[remark]: https://github.com/wooorm/remark
+[remark]: https://github.com/remarkjs/remark
