@@ -41,7 +41,8 @@ Some emphasis, importance, and code.
 
 Modifies **remark** to expose plain-text.
 
-*   Removes `html`, `code`, `horizontalRule`, `table`, and their content
+*   Removes `html`, `code`, `horizontalRule`, `table`, `yaml`, `toml`, and their
+    content
 *   Render everything else as simple paragraphs without formatting
 *   Uses `alt` text for images
 

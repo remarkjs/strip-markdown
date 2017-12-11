@@ -33,6 +33,7 @@ map.table = empty;
 map.tableCell = empty;
 map.definition = empty;
 map.yaml = empty;
+map.toml = empty;
 
 /* One node. */
 function one(node) {
