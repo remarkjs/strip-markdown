@@ -1,8 +1,7 @@
 # strip-markdown [![Build Status][travis-badge]][travis] [![Coverage Status][codecov-badge]][codecov]
 
-Remove Markdown formatting with [**remark**][remark].
-
-This essentially removes everything but paragraphs and text nodes.
+Remove Markdown formatting with [**remark**][remark].  This essentially removes
+everything but paragraphs and text nodes.
 
 > This is one of the first remark plugins, before prefixing with
 > `remark-` got cool.
@@ -48,7 +47,7 @@ Modifies **remark** to expose plain-text.
 
 ## Contribute
 
-See [`contribute.md` in `remarkjs/remarkj`][contribute] for ways to get started.
+See [`contribute.md` in `remarkjs/remark`][contribute] for ways to get started.
 
 This organisation has a [Code of Conduct][coc].  By interacting with this
 repository, organisation, or community you agree to abide by its terms.
