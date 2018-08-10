@@ -47,7 +47,8 @@ Modifies **remark** to expose plain-text.
 
 ## Contribute
 
-See [`contribute.md` in `remarkjs/remark`][contribute] for ways to get started.
+See [`contributing.md` in `remarkjs/remark`][contributing] for ways to get
+started.
 
 This organisation has a [Code of Conduct][coc].  By interacting with this
 repository, organisation, or community you agree to abide by its terms.
@@ -74,6 +75,6 @@ repository, organisation, or community you agree to abide by its terms.
 
 [remark]: https://github.com/remarkjs/remark
 
-[contribute]: https://github.com/remarkjs/remark/blob/master/contributing.md
+[contributing]: https://github.com/remarkjs/remark/blob/master/contributing.md
 
 [coc]: https://github.com/remarkjs/remark/blob/master/code-of-conduct.md
