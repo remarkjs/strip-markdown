@@ -3,7 +3,7 @@
 var test = require('tape');
 var remark = require('remark');
 var u = require('unist-builder');
-var strip = require('./');
+var strip = require('.');
 
 function proc(value) {
   return remark().use(strip).processSync(value).toString().trimRight();
