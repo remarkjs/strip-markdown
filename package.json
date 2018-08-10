@@ -22,19 +22,19 @@
   "dependencies": {},
   "devDependencies": {
     "browserify": "^16.0.0",
-    "esmangle": "^1.0.0",
     "nyc": "^12.0.0",
     "remark": "^9.0.0",
     "remark-cli": "^5.0.0",
     "remark-preset-wooorm": "^4.0.0",
     "tape": "^4.4.0",
+    "tinyify": "^2.4.3",
     "unist-builder": "^1.0.2",
     "xo": "^0.22.0"
   },
   "scripts": {
     "build-md": "remark . -qfo",
-    "build-bundle": "browserify index.js -s stripMarkdown > strip-markdown.js",
-    "build-mangle": "esmangle strip-markdown.js > strip-markdown.min.js",
+    "build-bundle": "browserify . -s stripMarkdown > strip-markdown.js",
+    "build-mangle": "browserify . -s stripMarkdown -p tinyify > strip-markdown.min.js",
     "build": "npm run build-md && npm run build-bundle && npm run build-mangle",
     "lint": "xo",
     "test-api": "node test",
