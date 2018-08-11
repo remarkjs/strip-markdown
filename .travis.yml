@@ -7,7 +7,7 @@ deploy:
   provider: releases
   skip_cleanup: true
   api_key:
-    secure: aljGeSHmOn4ycz4O4/VGdP+96PNJwUEA7YFDxt9ToUpD6NvvirxJOFWntMpikelwXP3+c6+DIy7RhJgemuniv+Gq9NplNNQV4JF1hwBuEGjg4VSglRBpaP5EeqeWRkrfu5M59X7eywhbvKDJxqWjuY6vkHEXP28/tH/0S6kEujA=
+    secure: BS+HkaAAf6wSdsV9pBVQgD/cr7sZRMLK+AnYg5r/wWG8sVgTC5eKDdhCaKaWQ/TA6QP4v0WxWLeij3Avo2RQemNaytd7oOKUB5+keyFfMlxgCv2F0NlrQ+0HgQEdN2M1TiG0O7DOhtdBkpk4WCCWwgSP5vBcrp9w1EzkZoH/dOE=
   file:
     - "strip-markdown.js"
     - "strip-markdown.min.js"
