@@ -17,15 +17,15 @@ npm install strip-markdown
 ## Usage
 
 ```javascript
-var remark = require('remark');
-var strip = require('strip-markdown');
+var remark = require('remark')
+var strip = require('strip-markdown')
 
 remark()
   .use(strip)
-  .process('Some _emphasis_, **importance**, and `code`.', function (err, file) {
-    if (err) throw err;
-    console.log(String(file));
-  });
+  .process('Some _emphasis_, **importance**, and `code`.', function(err, file) {
+    if (err) throw err
+    console.log(String(file))
+  })
 ```
 
 Yields:

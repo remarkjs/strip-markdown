@@ -1,130 +1,127 @@
-module.exports = strip;
+module.exports = strip
 
 function strip() {
-  return one;
+  return one
 }
 
 /* Expose modifiers for available node types.
  * Node types not listed here are not changed
  * (but their children are). */
-var map = {};
+var map = {}
 
-map.heading = paragraph;
-map.text = text;
-map.inlineCode = text;
-map.image = image;
-map.imageReference = image;
-map.break = lineBreak;
+map.heading = paragraph
+map.text = text
+map.inlineCode = text
+map.image = image
+map.imageReference = image
+map.break = lineBreak
 
-map.blockquote = children;
-map.list = children;
-map.listItem = children;
-map.strong = children;
-map.emphasis = children;
-map.delete = children;
-map.link = children;
-map.linkReference = children;
+map.blockquote = children
+map.list = children
+map.listItem = children
+map.strong = children
+map.emphasis = children
+map.delete = children
+map.link = children
+map.linkReference = children
 
-map.code = empty;
-map.horizontalRule = empty;
-map.thematicBreak = empty;
-map.html = empty;
-map.table = empty;
-map.tableCell = empty;
-map.definition = empty;
-map.yaml = empty;
-map.toml = empty;
+map.code = empty
+map.horizontalRule = empty
+map.thematicBreak = empty
+map.html = empty
+map.table = empty
+map.tableCell = empty
+map.definition = empty
+map.yaml = empty
+map.toml = empty
 
 /* One node. */
 function one(node) {
-  var type = node && node.type;
+  var type = node && node.type
 
   if (type in map) {
-    node = map[type](node);
+    node = map[type](node)
   }
 
   if ('length' in node) {
-    node = all(node);
+    node = all(node)
   }
 
   if (node.children) {
-    node.children = all(node.children);
+    node.children = all(node.children)
   }
 
-  return node;
+  return node
 }
 
 /* Multiple nodes. */
 function all(nodes) {
-  var index = -1;
-  var length = nodes.length;
-  var result = [];
-  var value;
+  var index = -1
+  var length = nodes.length
+  var result = []
+  var value
 
   while (++index < length) {
-    value = one(nodes[index]);
+    value = one(nodes[index])
 
     if (value && typeof value.length === 'number') {
-      result = result.concat(value.map(one));
+      result = result.concat(value.map(one))
     } else {
-      result.push(value);
+      result.push(value)
     }
   }
 
-  return clean(result);
+  return clean(result)
 }
 
 /* Clean nodes: merges text's. */
 function clean(values) {
-  var index = -1;
-  var length = values.length;
-  var result = [];
-  var prev = null;
-  var value;
+  var index = -1
+  var length = values.length
+  var result = []
+  var prev = null
+  var value
 
   while (++index < length) {
-    value = values[index];
+    value = values[index]
 
     if (prev && 'value' in value && value.type === prev.type) {
-      prev.value += value.value;
+      prev.value += value.value
     } else {
-      result.push(value);
-      prev = value;
+      result.push(value)
+      prev = value
     }
   }
 
-  return result;
+  return result
 }
 
 /* Return an stringified image. */
 function image(token) {
-  return {
-    type: 'text',
-    value: token.alt || token.title || ''
-  };
+  return {type: 'text', value: token.alt || token.title || ''}
 }
 
 /* Return `token`s value. */
 function text(token) {
-  return {type: 'text', value: token.value};
+  return {type: 'text', value: token.value}
 }
 
 /* Return a paragraph. */
 function paragraph(token) {
-  return {type: 'paragraph', children: token.children};
+  return {type: 'paragraph', children: token.children}
 }
 
 /* Return the concatenation of `token`s children. */
 function children(token) {
-  return token.children;
+  return token.children
 }
 
 /* Return line break. */
 function lineBreak() {
-  return {type: 'text', value: '\n'};
+  return {type: 'text', value: '\n'}
 }
 
 /* Return nothing. */
 function empty() {
-  return {type: 'text', value: ''};
+  return {type: 'text', value: ''}
 }
