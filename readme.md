@@ -1,4 +1,11 @@
-# strip-markdown [![Build Status][travis-badge]][travis] [![Coverage Status][codecov-badge]][codecov]
+# strip-markdown
+
+[![Build][build-badge]][build]
+[![Coverage][coverage-badge]][coverage]
+[![Downloads][downloads-badge]][downloads]
+[![Chat][chat-badge]][chat]
+[![Sponsors][sponsors-badge]][collective]
+[![Backers][backers-badge]][collective]
 
 Remove Markdown formatting with [**remark**][remark].  This essentially removes
 everything but paragraphs and text nodes.
@@ -59,13 +66,27 @@ repository, organisation, or community you agree to abide by its terms.
 
 <!-- Definitions -->
 
-[travis-badge]: https://img.shields.io/travis/remarkjs/strip-markdown.svg
+[build-badge]: https://img.shields.io/travis/remarkjs/strip-markdown.svg
 
-[travis]: https://travis-ci.org/remarkjs/strip-markdown
+[build]: https://travis-ci.org/remarkjs/strip-markdown
 
-[codecov-badge]: https://img.shields.io/codecov/c/github/remarkjs/strip-markdown.svg
+[coverage-badge]: https://img.shields.io/codecov/c/github/remarkjs/strip-markdown.svg
 
-[codecov]: https://codecov.io/github/remarkjs/strip-markdown
+[coverage]: https://codecov.io/github/remarkjs/strip-markdown
+
+[downloads-badge]: https://img.shields.io/npm/dm/strip-markdown.svg
+
+[downloads]: https://www.npmjs.com/package/strip-markdown
+
+[chat-badge]: https://img.shields.io/badge/join%20the%20community-on%20spectrum-7b16ff.svg
+
+[chat]: https://spectrum.chat/unified/remark
+
+[sponsors-badge]: https://opencollective.com/unified/sponsors/badge.svg
+
+[backers-badge]: https://opencollective.com/unified/backers/badge.svg
+
+[collective]: https://opencollective.com/unified
 
 [npm]: https://docs.npmjs.com/cli/install
 
