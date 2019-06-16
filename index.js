@@ -1,12 +1,13 @@
+'use strict'
+
 module.exports = strip
 
 function strip() {
   return one
 }
 
-/* Expose modifiers for available node types.
- * Node types not listed here are not changed
- * (but their children are). */
+// Expose modifiers for available node types.
+// Node types not listed here are not changed (but their children are).
 var map = {}
 
 map.heading = paragraph
@@ -35,7 +36,6 @@ map.definition = empty
 map.yaml = empty
 map.toml = empty
 
-/* One node. */
 function one(node) {
   var type = node && node.type
 
@@ -54,7 +54,6 @@ function one(node) {
   return node
 }
 
-/* Multiple nodes. */
 function all(nodes) {
   var index = -1
   var length = nodes.length
@@ -74,7 +73,7 @@ function all(nodes) {
   return clean(result)
 }
 
-/* Clean nodes: merges text's. */
+// Clean nodes: merges texts.
 function clean(values) {
   var index = -1
   var length = values.length
@@ -96,32 +95,26 @@ function clean(values) {
   return result
 }
 
-/* Return an stringified image. */
-function image(token) {
-  return {type: 'text', value: token.alt || token.title || ''}
+function image(node) {
+  return {type: 'text', value: node.alt || node.title || ''}
 }
 
-/* Return `token`s value. */
-function text(token) {
-  return {type: 'text', value: token.value}
+function text(node) {
+  return {type: 'text', value: node.value}
 }
 
-/* Return a paragraph. */
-function paragraph(token) {
-  return {type: 'paragraph', children: token.children}
+function paragraph(node) {
+  return {type: 'paragraph', children: node.children}
 }
 
-/* Return the concatenation of `token`s children. */
-function children(token) {
-  return token.children
+function children(node) {
+  return node.children
 }
 
-/* Return line break. */
 function lineBreak() {
   return {type: 'text', value: '\n'}
 }
 
-/* Return nothing. */
 function empty() {
   return {type: 'text', value: ''}
 }
