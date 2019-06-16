@@ -1,11 +1,15 @@
 {
   "name": "strip-markdown",
   "version": "3.0.3",
-  "description": "Remove markdown formatting",
+  "description": "remark plugin to remove Markdown formatting",
   "license": "MIT",
   "keywords": [
-    "text",
+    "unified",
+    "remark",
+    "plugin",
+    "mdast",
     "markdown",
+    "text",
     "plain",
     "text"
   ],
