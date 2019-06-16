@@ -3,33 +3,34 @@
 [![Build][build-badge]][build]
 [![Coverage][coverage-badge]][coverage]
 [![Downloads][downloads-badge]][downloads]
-[![Chat][chat-badge]][chat]
+[![Size][size-badge]][size]
 [![Sponsors][sponsors-badge]][collective]
 [![Backers][backers-badge]][collective]
+[![Chat][chat-badge]][chat]
 
-Remove Markdown formatting with [**remark**][remark].  This essentially removes
-everything but paragraphs and text nodes.
+[**remark**][remark] plugin remove Markdown formatting.
+This essentially removes everything but paragraphs and text nodes.
 
-> This is one of the first remark plugins, before prefixing with
-> `remark-` got cool.
+> This is one of the first remark plugins, before prefixing with `remark-` got
+> cool.
 
-## Installation
+## Install
 
 [npm][]:
 
-```bash
+```sh
 npm install strip-markdown
 ```
 
-## Usage
+## Use
 
-```javascript
+```js
 var remark = require('remark')
 var strip = require('strip-markdown')
 
 remark()
   .use(strip)
-  .process('Some _emphasis_, **importance**, and `code`.', function(err, file) {
+  .process('Some *emphasis*, **importance**, and `code`.', function(err, file) {
     if (err) throw err
     console.log(String(file))
   })
@@ -37,7 +38,7 @@ remark()
 
 Yields:
 
-```text
+```txt
 Some emphasis, importance, and code.
 ```
 
@@ -45,7 +46,7 @@ Some emphasis, importance, and code.
 
 ### `remark().use(strip)`
 
-Modifies **remark** to expose plain-text.
+Plugin remove Markdown formatting.
 
 *   Removes `html`, `code`, `horizontalRule`, `table`, `yaml`, `toml`, and their
     content
@@ -54,11 +55,13 @@ Modifies **remark** to expose plain-text.
 
 ## Contribute
 
-See [`contributing.md` in `remarkjs/remark`][contributing] for ways to get
-started.
+See [`contributing.md`][contributing] in [`remarkjs/.github`][health] for ways
+to get started.
+See [`support.md`][support] for ways to get help.
 
-This organisation has a [Code of Conduct][coc].  By interacting with this
-repository, organisation, or community you agree to abide by its terms.
+This project has a [Code of Conduct][coc].
+By interacting with this repository, organisation, or community you agree to
+abide by its terms.
 
 ## License
 
@@ -66,7 +69,7 @@ repository, organisation, or community you agree to abide by its terms.
 
 <!-- Definitions -->
 
-[build-badge]: https://img.shields.io/travis/remarkjs/strip-markdown.svg
+[build-badge]: https://img.shields.io/travis/remarkjs/strip-markdown/master.svg
 
 [build]: https://travis-ci.org/remarkjs/strip-markdown
 
@@ -78,9 +81,9 @@ repository, organisation, or community you agree to abide by its terms.
 
 [downloads]: https://www.npmjs.com/package/strip-markdown
 
-[chat-badge]: https://img.shields.io/badge/join%20the%20community-on%20spectrum-7b16ff.svg
+[size-badge]: https://img.shields.io/bundlephobia/minzip/strip-markdown.svg
 
-[chat]: https://spectrum.chat/unified/remark
+[size]: https://bundlephobia.com/result?p=strip-markdown
 
 [sponsors-badge]: https://opencollective.com/unified/sponsors/badge.svg
 
@@ -88,14 +91,22 @@ repository, organisation, or community you agree to abide by its terms.
 
 [collective]: https://opencollective.com/unified
 
+[chat-badge]: https://img.shields.io/badge/join%20the%20community-on%20spectrum-7b16ff.svg
+
+[chat]: https://spectrum.chat/unified/remark
+
 [npm]: https://docs.npmjs.com/cli/install
+
+[health]: https://github.com/remarkjs/.github
+
+[contributing]: https://github.com/remarkjs/.github/blob/master/contributing.md
+
+[support]: https://github.com/remarkjs/.github/blob/master/support.md
+
+[coc]: https://github.com/remarkjs/.github/blob/master/code-of-conduct.md
 
 [license]: license
 
 [author]: https://wooorm.com
 
 [remark]: https://github.com/remarkjs/remark
-
-[contributing]: https://github.com/remarkjs/remark/blob/master/contributing.md
-
-[coc]: https://github.com/remarkjs/remark/blob/master/code-of-conduct.md
