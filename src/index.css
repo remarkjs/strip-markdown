@@ -1,0 +1,70 @@
+* {
+  box-sizing: border-box;
+}
+
+body {
+  font-family: system-ui;
+  margin: 0;
+}
+
+main {
+  max-width: 40em;
+  margin: 0 auto;
+  padding: 0 calc(1em + 1ex);
+}
+
+@media (min-width: 40em) and (min-height: 20em) {
+  main {
+    /* Go all Tschichold when supported */
+    margin: 11.1vh 22.2vw 22.2vh 11.1vw;
+    padding: 0 calc(2em + 2ex);
+  }
+}
+
+h1 {
+  font-size: 3em;
+}
+
+a {
+  text-decoration: none;
+  color: #0367d8;
+  transition: 200ms;
+  transition-property: color;
+}
+
+a:hover,
+a:focus,
+a:target {
+  color: inherit;
+}
+
+h1,
+p,
+textarea {
+  margin: calc(1em + 1ex) 0;
+}
+
+textarea {
+  font-size: 1em;
+  font-family: SFMono-Regular, Consolas, Liberation Mono, Menlo, monospace;
+  color: inherit;
+  display: block;
+  max-width: 100%;
+  background-color: hsl(0, 0%, 97.5%);
+  margin: -1px;
+  border: 1px solid hsl(214, 13%, 90%);
+  padding: calc(0.5 * (1em + 1ex));
+  border-radius: 3px;
+}
+
+@media (prefers-color-scheme: dark) {
+  html {
+    background-color: hsl(214, 13%, 7.5%);
+    color: hsl(214, 13%, 95%);
+  }
+
+  textarea {
+    background-color: hsl(214, 13%, 5%);
+    border-color: hsl(214, 13%, 12.5%);
+  }
+}
