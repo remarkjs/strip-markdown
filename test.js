@@ -5,9 +5,9 @@ var remark = require('remark')
 var u = require('unist-builder')
 var strip = require('.')
 
-function proc(value) {
+function proc(value, options) {
   return remark()
-    .use(strip)
+    .use(strip, options)
     .processSync(value)
     .toString()
     .trimRight()
@@ -81,6 +81,25 @@ test('stripMarkdown()', function(t) {
     proc('[<img src="http://example.com/a.jpg" />](http://example.com)'),
     '',
     'html (3)'
+  )
+
+  // "keep" option
+  t.equal(
+    proc('- **Hello**\n\n- World!', {keep: []}),
+    'Hello\n\nWorld!',
+    'empty array as "keep" option'
+  )
+  t.equal(
+    proc('- **Hello**\n\n- World!', {keep: ['list', 'listItem']}),
+    '-   Hello\n\n-   World!',
+    'keep lists'
+  )
+  t.throws(
+    function() {
+      proc('- **Hello**\n\n- World!', {keep: ['typo']})
+    },
+    /Error: Invalid "keep" option/,
+    'invalid "keep" option'
   )
 
   t.end()
