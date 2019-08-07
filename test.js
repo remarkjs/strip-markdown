@@ -98,7 +98,7 @@ test('stripMarkdown()', function(t) {
     function() {
       proc('- **Hello**\n\n- World!', {keep: ['typo']})
     },
-    /Error: Invalid "keep" option/,
+    /Error: Invalid `keep` option/,
     'invalid "keep" option'
   )
 

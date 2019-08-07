@@ -43,7 +43,9 @@ function strip(options) {
       delete mapFiltered[nodeType]
     } else {
       throw new Error(
-        `Invalid "keep" option: No modifier is defined for node type "${nodeType}"`
+        'Invalid `keep` option: No modifier is defined for node type `' +
+          nodeType +
+          '`'
       )
     }
   })
