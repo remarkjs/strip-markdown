@@ -2,45 +2,62 @@
 
 module.exports = strip
 
-function strip() {
-  return one
-}
-
 // Expose modifiers for available node types.
 // Node types not listed here are not changed (but their children are).
-var map = {}
+var map = {
+  heading: paragraph,
+  text: text,
+  inlineCode: text,
+  image: image,
+  imageReference: image,
+  break: lineBreak,
 
-map.heading = paragraph
-map.text = text
-map.inlineCode = text
-map.image = image
-map.imageReference = image
-map.break = lineBreak
+  blockquote: children,
+  list: children,
+  listItem: children,
+  strong: children,
+  emphasis: children,
+  delete: children,
+  link: children,
+  linkReference: children,
 
-map.blockquote = children
-map.list = children
-map.listItem = children
-map.strong = children
-map.emphasis = children
-map.delete = children
-map.link = children
-map.linkReference = children
+  code: empty,
+  horizontalRule: empty,
+  thematicBreak: empty,
+  html: empty,
+  table: empty,
+  tableCell: empty,
+  definition: empty,
+  yaml: empty,
+  toml: empty
+}
+var mapFiltered
 
-map.code = empty
-map.horizontalRule = empty
-map.thematicBreak = empty
-map.html = empty
-map.table = empty
-map.tableCell = empty
-map.definition = empty
-map.yaml = empty
-map.toml = empty
+function strip(options) {
+  var keep = (options || {}).keep || []
+
+  // Remove node types specified in `keep` from map
+  mapFiltered = Object.assign({}, map)
+  keep.forEach(function(nodeType) {
+    if (nodeType in mapFiltered) {
+      delete mapFiltered[nodeType]
+    } else {
+      throw new Error(
+        'Invalid `keep` option: No modifier is defined for node type `' +
+          nodeType +
+          '`'
+      )
+    }
+  })
+
+  return one
+}
 
 function one(node) {
   var type = node && node.type
 
-  if (type in map) {
-    node = map[type](node)
+  if (type in mapFiltered) {
+    node = mapFiltered[type](node)
   }
 
   if ('length' in node) {
