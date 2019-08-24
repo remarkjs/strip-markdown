@@ -125,7 +125,7 @@ function paragraph(node) {
 }
 
 function children(node) {
-  return node.children
+  return node.children || []
 }
 
 function lineBreak() {

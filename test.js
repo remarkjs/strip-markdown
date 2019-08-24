@@ -30,6 +30,14 @@ test('stripMarkdown()', function(t) {
     'should keep unknown nodes'
   )
 
+  t.deepEqual(
+    remark()
+      .use(strip)
+      .runSync(u('root', [u('paragraph', [u('link')])])),
+    u('root', [u('paragraph', [])]),
+    'should keep unknown nodes'
+  )
+
   t.equal(proc('Alfred'), 'Alfred', 'text')
   t.equal(proc('*Alfred*'), 'Alfred', 'emphasis (1)')
   t.equal(proc('_Alfred_'), 'Alfred', 'emphasis (2)')
