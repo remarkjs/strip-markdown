@@ -6,14 +6,10 @@ var u = require('unist-builder')
 var strip = require('.')
 
 function proc(value, options) {
-  return remark()
-    .use(strip, options)
-    .processSync(value)
-    .toString()
-    .trimRight()
+  return remark().use(strip, options).processSync(value).toString().trimEnd()
 }
 
-test('stripMarkdown()', function(t) {
+test('stripMarkdown()', function (t) {
   t.deepEqual(
     remark()
       .use(strip)
@@ -103,7 +99,7 @@ test('stripMarkdown()', function(t) {
     'keep lists'
   )
   t.throws(
-    function() {
+    function () {
       proc('- **Hello**\n\n- World!', {keep: ['typo']})
     },
     /Error: Invalid `keep` option/,
