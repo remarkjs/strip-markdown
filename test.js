@@ -91,7 +91,7 @@ test('stripMarkdown()', function (t) {
   t.equal(
     proc('- **Hello**\n\n- World!', {keep: []}),
     'Hello\n\nWorld!',
-    'empty array as "keep" option'
+    'empty array as `keep` option'
   )
   t.equal(
     proc('- **Hello**\n\n- World!', {keep: ['list', 'listItem']}),
@@ -103,7 +103,7 @@ test('stripMarkdown()', function (t) {
       proc('- **Hello**\n\n- World!', {keep: ['typo']})
     },
     /Error: Invalid `keep` option/,
-    'invalid "keep" option'
+    'invalid `keep` option'
   )
 
   t.end()

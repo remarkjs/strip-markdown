@@ -67,6 +67,9 @@
   "xo": {
     "prettier": true,
     "esnext": false,
+    "rules": {
+      "unicorn/prefer-includes": "off"
+    },
     "ignores": [
       "strip-markdown.js"
     ]
