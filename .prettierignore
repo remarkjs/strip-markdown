@@ -1,3 +1,5 @@
 coverage/
 strip-markdown.js
 strip-markdown.min.js
+*.json
+*.md
