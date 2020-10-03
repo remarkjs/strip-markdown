@@ -14,6 +14,12 @@ This essentially removes everything but paragraphs and text nodes.
 > This is one of the first remark plugins, before prefixing with `remark-` got
 > cool.
 
+## Note!
+
+This plugin is ready for the new parser in remark
+([`remarkjs/remark#536`](https://github.com/remarkjs/remark/pull/536)).
+No change is needed: it works exactly the same now as it did before!
+
 ## Install
 
 [npm][]:
