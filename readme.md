@@ -54,8 +54,8 @@ Some emphasis, importance, and code.
 
 Plugin remove Markdown formatting.
 
-*   Removes `html`, `code`, `horizontalRule`, `table`, `yaml`, `toml`, and their
-    content
+*   Removes `html` ([*note*][gh-19]), `code`, `horizontalRule`, `table`, `yaml`,
+    `toml`, and their content
 *   Render everything else as simple paragraphs without formatting
 *   Uses `alt` text for images
 
@@ -128,3 +128,5 @@ abide by its terms.
 [rehype]: https://github.com/rehypejs/rehype
 
 [hast]: https://github.com/syntax-tree/hast
+
+[gh-19]: https://github.com/remarkjs/strip-markdown/issues/19
