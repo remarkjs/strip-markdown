@@ -26,11 +26,14 @@
     "Ohtake Tomohiro <ohtake.tomohiro@jp.fujitsu.com>"
   ],
   "files": [
-    "index.js"
+    "index.js",
+    "types/index.d.ts"
   ],
+  "types": "types",
   "dependencies": {},
   "devDependencies": {
     "browserify": "^16.0.0",
+    "dtslint": "^4.0.0",
     "nyc": "^15.0.0",
     "prettier": "^2.0.0",
     "remark": "^13.0.0-alpha.0",
@@ -48,7 +51,8 @@
     "build": "npm run build-bundle && npm run build-mangle",
     "test-api": "node test",
     "test-coverage": "nyc --reporter lcov tape test.js",
-    "test": "npm run format && npm run build && npm run test-coverage"
+    "test-types": "dtslint types",
+    "test": "npm run format && npm run build && npm run test-coverage && npm run test-types"
   },
   "nyc": {
     "check-coverage": true,
@@ -72,7 +76,8 @@
       "unicorn/prefer-includes": "off"
     },
     "ignores": [
-      "strip-markdown.js"
+      "strip-markdown.js",
+      "types/index.d.ts"
     ]
   },
   "remarkConfig": {
