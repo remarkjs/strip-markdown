@@ -1,6 +1,6 @@
 // TypeScript Version: 3.0
 
-import {Transformer} from 'unified'
+import {Plugin} from 'unified'
 
 declare namespace strip {
   interface Options {
@@ -42,6 +42,6 @@ declare namespace strip {
  * everything else is rendered as simple paragraphs without formatting.
  * Uses `alt` text for images.
  */
-declare function strip(options?: strip.Options): Transformer
+declare const strip: Plugin<[strip.Options?]>
 
 export = strip
