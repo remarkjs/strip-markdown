@@ -81,9 +81,9 @@ abide by its terms.
 
 <!-- Definitions -->
 
-[build-badge]: https://img.shields.io/travis/remarkjs/strip-markdown/main.svg
+[build-badge]: https://github.com/remarkjs/strip-markdown/workflows/main/badge.svg
 
-[build]: https://travis-ci.org/remarkjs/strip-markdown
+[build]: https://github.com/remarkjs/strip-markdown/actions
 
 [coverage-badge]: https://img.shields.io/codecov/c/github/remarkjs/strip-markdown.svg
 
