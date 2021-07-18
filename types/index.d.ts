@@ -31,6 +31,8 @@ declare namespace strip {
       | 'definition'
       | 'yaml'
       | 'toml'
+      | 'footnoteReference'
+      | 'footnoteDefinition'
     >
   }
 }
