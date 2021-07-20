@@ -29,7 +29,10 @@ var defaults = {
   tableCell: empty,
   definition: empty,
   yaml: empty,
-  toml: empty
+  toml: empty,
+
+  footnoteReference: empty,
+  footnoteDefinition: empty
 }
 
 var own = {}.hasOwnProperty

@@ -2,11 +2,19 @@
 
 var test = require('tape')
 var remark = require('remark')
+var gfm = require('remark-gfm')
+var footnotes = require('remark-footnotes')
 var u = require('unist-builder')
 var strip = require('.')
 
 function proc(value, options) {
-  return remark().use(strip, options).processSync(value).toString().trimEnd()
+  return remark()
+    .use(gfm)
+    .use(footnotes)
+    .use(strip, options)
+    .processSync(value)
+    .toString()
+    .trimEnd()
 }
 
 test('stripMarkdown()', function (t) {
@@ -39,8 +47,7 @@ test('stripMarkdown()', function (t) {
   t.equal(proc('_Alfred_'), 'Alfred', 'emphasis (2)')
   t.equal(proc('**Alfred**'), 'Alfred', 'importance (1)')
   t.equal(proc('__Alfred__'), 'Alfred', 'importance (2)')
-  // To do: add `remark-gfm` when that’s done.
-  // t.equal(proc('~~Alfred~~'), 'Alfred', 'strikethrough')
+  t.equal(proc('~~Alfred~~'), 'Alfred', 'strikethrough')
   t.equal(proc('`Alfred`'), 'Alfred', 'inline code')
   t.equal(proc('[Hello](world)'), 'Hello', 'link')
   t.equal(proc('[**H**ello](world)'), 'Hello', 'importance in link')
@@ -77,8 +84,7 @@ test('stripMarkdown()', function (t) {
   t.equal(proc('---'), '', 'thematic break')
   t.equal(proc('A  \nB'), 'A\nB', 'hard line break')
   t.equal(proc('A\nB'), 'A\nB', 'soft line break')
-  // To do: add `remark-gfm` when that’s done.
-  // t.equal(proc('| A | B |\n| - | - |\n| C | D |'), '', 'table')
+  t.equal(proc('| A | B |\n| - | - |\n| C | D |'), '', 'table')
   t.equal(proc('\talert("hello");'), '', 'code (1)')
   t.equal(proc('```js\nconsole.log("world");\n```'), '', 'code (2)')
   t.equal(proc('<sup>Hello</sup>'), 'Hello', 'html (1)')
@@ -88,6 +94,8 @@ test('stripMarkdown()', function (t) {
     '',
     'html (3)'
   )
+
+  t.equal(proc('Hello[^1]\n\n[^1]: World'), 'Hello', 'footnote')
 
   // "keep" option
   t.equal(
