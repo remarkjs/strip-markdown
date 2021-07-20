@@ -1,6 +1,6 @@
 {
   "name": "strip-markdown",
-  "version": "4.0.0",
+  "version": "4.1.0",
   "description": "remark plugin to remove Markdown formatting",
   "license": "MIT",
   "keywords": [
