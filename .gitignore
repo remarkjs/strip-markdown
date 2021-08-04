@@ -1,7 +1,5 @@
-.DS_Store
-*.log
 coverage/
 node_modules/
-strip-markdown.js
-strip-markdown.min.js
+.DS_Store
+*.log
 yarn.lock
