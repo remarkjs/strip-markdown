@@ -1,16 +1,16 @@
 import test from 'tape'
-import remark from 'remark'
-import gfm from 'remark-gfm'
-import footnotes from 'remark-footnotes'
-import directive from 'remark-directive'
-import u from 'unist-builder'
+import {remark} from 'remark'
+import remarkGfm from 'remark-gfm'
+import remarkFootnotes from 'remark-footnotes'
+import remarkDirective from 'remark-directive'
+import {u} from 'unist-builder'
 import stripMarkdown from './index.js'
 
 function proc(value, options) {
   return remark()
-    .use(gfm)
-    .use(footnotes)
-    .use(directive)
+    .use(remarkGfm)
+    .use(remarkFootnotes)
+    .use(remarkDirective)
     .use(stripMarkdown, options)
     .processSync(value)
     .toString()
