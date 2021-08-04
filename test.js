@@ -1,19 +1,17 @@
-'use strict'
-
-var test = require('tape')
-var remark = require('remark')
-var gfm = require('remark-gfm')
-var footnotes = require('remark-footnotes')
-var directive = require('remark-directive')
-var u = require('unist-builder')
-var strip = require('.')
+import test from 'tape'
+import remark from 'remark'
+import gfm from 'remark-gfm'
+import footnotes from 'remark-footnotes'
+import directive from 'remark-directive'
+import u from 'unist-builder'
+import stripMarkdown from './index.js'
 
 function proc(value, options) {
   return remark()
     .use(gfm)
     .use(footnotes)
     .use(directive)
-    .use(strip, options)
+    .use(stripMarkdown, options)
     .processSync(value)
     .toString()
     .trimEnd()
@@ -22,7 +20,7 @@ function proc(value, options) {
 test('stripMarkdown()', function (t) {
   t.deepEqual(
     remark()
-      .use(strip)
+      .use(stripMarkdown)
       .runSync(
         u('root', [
           u('unknown', [u('strong', [u('text', 'value')])]),
@@ -38,7 +36,7 @@ test('stripMarkdown()', function (t) {
 
   t.deepEqual(
     remark()
-      .use(strip)
+      .use(stripMarkdown)
       .runSync(u('root', [u('paragraph', [u('link')])])),
     u('root', [u('paragraph', [])]),
     'should keep unknown nodes'

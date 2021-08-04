@@ -1,7 +1,3 @@
-'use strict'
-
-module.exports = strip
-
 // Expose modifiers for available node types.
 // Node types not listed here are not changed (but their children are).
 var defaults = {
@@ -37,7 +33,7 @@ var defaults = {
 
 var own = {}.hasOwnProperty
 
-function strip(options) {
+export default function stripMarkdown(options) {
   var handlers = {}
   var map = {}
   var settings = options || {}
