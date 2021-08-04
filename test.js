@@ -1,3 +1,9 @@
+/**
+ * @typedef {import('unist').Node} Node
+ * @typedef {import('mdast').Content} Content
+ * @typedef {import('./index.js').Options} Options
+ */
+
 import test from 'tape'
 import {remark} from 'remark'
 import remarkGfm from 'remark-gfm'
@@ -6,6 +12,11 @@ import remarkDirective from 'remark-directive'
 import {u} from 'unist-builder'
 import stripMarkdown from './index.js'
 
+/**
+ * @param {string} value
+ * @param {Options|undefined} [options]
+ * @returns {string}
+ */
 function proc(value, options) {
   return remark()
     .use(remarkGfm)
@@ -22,6 +33,7 @@ test('stripMarkdown()', (t) => {
     remark()
       .use(stripMarkdown)
       .runSync(
+        // @ts-expect-error: custom nodes.
         u('root', [
           u('unknown', [u('strong', [u('text', 'value')])]),
           u('anotherUnknown', 'with value')
@@ -37,6 +49,7 @@ test('stripMarkdown()', (t) => {
   t.deepEqual(
     remark()
       .use(stripMarkdown)
+      // @ts-expect-error: custom nodes.
       .runSync(u('root', [u('paragraph', [u('link')])])),
     u('root', [u('paragraph', [])]),
     'should keep unknown nodes'
@@ -110,6 +123,7 @@ test('stripMarkdown()', (t) => {
   )
   t.throws(
     () => {
+      // @ts-expect-error: custom node.
       proc('- **Hello**\n\n- World!', {keep: ['typo']})
     },
     /Error: Invalid `keep` option/,
@@ -118,6 +132,9 @@ test('stripMarkdown()', (t) => {
 
   // "remove" option
   t.equal(
+    // To do: once `remark-directive` is typed and registered, this will
+    // magically be registered as a known node.
+    // @ts-expect-error: custom node.
     proc('I read this :cite[smith04]!', {remove: ['textDirective']}),
     'I read this !',
     'remove directive'
@@ -127,9 +144,14 @@ test('stripMarkdown()', (t) => {
       'A :i[lovely] language known as :abbr[HTML]{title="HyperText Markup Language"}.',
       {
         remove: [
+          // To do: once `remark-directive` is typed and registered, this will
+          // magically be registered as a known node.
+          // @ts-expect-error: custom node.
           [
             'textDirective',
-            (node) => {
+            (
+              /** @type {Node & {children: Content[], name: string, attributes: Record<string, string>}} */ node
+            ) => {
               if (node.name === 'abbr') {
                 return {type: 'text', value: node.attributes.title}
               }

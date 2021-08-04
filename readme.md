@@ -8,7 +8,7 @@
 [![Backers][backers-badge]][collective]
 [![Chat][chat-badge]][chat]
 
-[**remark**][remark] plugin remove Markdown formatting.
+[**remark**][remark] plugin remove markdown formatting.
 This essentially removes everything but paragraphs and text nodes.
 
 > This is one of the first remark plugins, before prefixing with `remark-` got
@@ -58,7 +58,7 @@ The default export is `stripMarkdown`.
 
 ### `unified().use(stripMarkdown[, options])`
 
-Plugin remove Markdown formatting.
+Plugin remove markdown formatting.
 
 *   Removes `html` ([*note*][gh-19]), `code`, `horizontalRule`, `table`, `yaml`,
     `toml`, and their content
