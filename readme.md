@@ -22,6 +22,9 @@ No change is needed: it works exactly the same now as it did before!
 
 ## Install
 
+This package is [ESM only](https://gist.github.com/sindresorhus/a39789f98801d908bbc7ff3ecc99d99c):
+Node 12+ is needed to use it and it must be `import`ed instead of `require`d.
+
 [npm][]:
 
 ```sh
@@ -31,13 +34,13 @@ npm install strip-markdown
 ## Use
 
 ```js
-var remark = require('remark')
-var strip = require('strip-markdown')
+import {remark} from 'remark'
+import strip from 'strip-markdown'
 
 remark()
   .use(strip)
-  .process('Some *emphasis*, **importance**, and `code`.', function(err, file) {
-    if (err) throw err
+  .process('Some *emphasis*, **importance**, and `code`.')
+  .then((file) => {
     console.log(String(file))
   })
 ```
@@ -50,7 +53,10 @@ Some emphasis, importance, and code.
 
 ## API
 
-### `remark().use(strip)`
+This package exports no identifiers.
+The default export is `stripMarkdown`.
+
+### `unified().use(stripMarkdown[, options])`
 
 Plugin remove Markdown formatting.
 
