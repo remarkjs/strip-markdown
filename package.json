@@ -61,12 +61,6 @@
   },
   "xo": {
     "prettier": true,
-    "rules": {
-      "no-var": "off",
-      "prefer-arrow-callback": "off",
-      "unicorn/no-array-callback-reference": "off",
-      "unicorn/prefer-includes": "off"
-    },
     "ignores": [
       "types/index.d.ts"
     ]

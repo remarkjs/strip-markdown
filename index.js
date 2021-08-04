@@ -1,10 +1,10 @@
 // Expose modifiers for available node types.
 // Node types not listed here are not changed (but their children are).
-var defaults = {
+const defaults = {
   heading: paragraph,
-  text: text,
+  text,
   inlineCode: text,
-  image: image,
+  image,
   imageReference: image,
   break: lineBreak,
 
@@ -31,42 +31,42 @@ var defaults = {
   footnoteDefinition: empty
 }
 
-var own = {}.hasOwnProperty
+const own = {}.hasOwnProperty
 
-export default function stripMarkdown(options) {
-  var handlers = {}
-  var map = {}
-  var settings = options || {}
-  var remove = settings.remove || []
-  var keep = settings.keep || []
-  var length = keep.length
-  var index = -1
-  var key
+export default function stripMarkdown(options = {}) {
+  const handlers = Object.assign({}, defaults)
+  const remove = options.remove || []
+  const keep = options.keep || []
 
-  if (remove.length === 0) {
-    handlers = defaults
-  } else {
-    handlers = Object.assign({}, defaults)
-    remove.forEach((name) => {
-      if (Array.isArray(name)) {
-        handlers[name[0]] = name[1]
-      } else {
-        handlers[name] = empty
-      }
-    })
+  let index = -1
+
+  while (++index < remove.length) {
+    const value = remove[index]
+
+    if (Array.isArray(value)) {
+      handlers[value[0]] = value[1]
+    } else {
+      handlers[value] = empty
+    }
   }
 
-  if (length === 0) {
+  let map = {}
+
+  if (keep.length === 0) {
     map = handlers
   } else {
+    let key
+
     for (key in handlers) {
-      if (keep.indexOf(key) === -1) {
+      if (!keep.includes(key)) {
         map[key] = handlers[key]
       }
     }
 
+    index = -1
+
     // Warn if unknown keys are turned off.
-    while (++index < length) {
+    while (++index < keep.length) {
       key = keep[index]
 
       if (!own.call(handlers, key)) {
@@ -82,14 +82,11 @@ export default function stripMarkdown(options) {
   return one
 
   function one(node) {
-    var type = node && node.type
+    const type = node.type
 
     if (type in map) {
-      node = map[type](node)
-    }
-
-    if ('length' in node) {
-      node = all(node)
+      const result = map[type](node)
+      node = Array.isArray(result) ? all(result) : result
     }
 
     if (node.children) {
@@ -100,16 +97,14 @@ export default function stripMarkdown(options) {
   }
 
   function all(nodes) {
-    var index = -1
-    var length = nodes.length
-    var result = []
-    var value
+    const result = []
+    let index = -1
 
-    while (++index < length) {
-      value = one(nodes[index])
+    while (++index < nodes.length) {
+      const value = one(nodes[index])
 
-      if (value && typeof value.length === 'number') {
-        result = result.concat(value.map(one))
+      if (Array.isArray(value)) {
+        result.push(...value.map((d) => one(d)))
       } else {
         result.push(value)
       }
@@ -121,16 +116,14 @@ export default function stripMarkdown(options) {
 
 // Clean nodes: merges texts.
 function clean(values) {
-  var index = -1
-  var length = values.length
-  var result = []
-  var previous = null
-  var value
+  const result = []
+  let index = -1
+  let previous
 
-  while (++index < length) {
-    value = values[index]
+  while (++index < values.length) {
+    const value = values[index]
 
-    if (previous && 'value' in value && value.type === previous.type) {
+    if (previous && value.type === previous.type && 'value' in value) {
       previous.value += value.value
     } else {
       result.push(value)

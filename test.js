@@ -17,7 +17,7 @@ function proc(value, options) {
     .trimEnd()
 }
 
-test('stripMarkdown()', function (t) {
+test('stripMarkdown()', (t) => {
   t.deepEqual(
     remark()
       .use(stripMarkdown)
@@ -109,7 +109,7 @@ test('stripMarkdown()', function (t) {
     'keep lists'
   )
   t.throws(
-    function () {
+    () => {
       proc('- **Hello**\n\n- World!', {keep: ['typo']})
     },
     /Error: Invalid `keep` option/,
