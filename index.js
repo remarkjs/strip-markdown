@@ -38,18 +38,34 @@ var defaults = {
 var own = {}.hasOwnProperty
 
 function strip(options) {
-  var keep = (options || {}).keep || []
+  var handlers = {}
   var map = {}
+  var settings = options || {}
+  var remove = settings.remove || []
+  var keep = settings.keep || []
   var length = keep.length
   var index = -1
   var key
 
-  if (length === 0) {
-    map = defaults
+  if (remove.length === 0) {
+    handlers = defaults
   } else {
-    for (key in defaults) {
+    handlers = Object.assign({}, defaults)
+    remove.forEach((name) => {
+      if (Array.isArray(name)) {
+        handlers[name[0]] = name[1]
+      } else {
+        handlers[name] = empty
+      }
+    })
+  }
+
+  if (length === 0) {
+    map = handlers
+  } else {
+    for (key in handlers) {
       if (keep.indexOf(key) === -1) {
-        map[key] = defaults[key]
+        map[key] = handlers[key]
       }
     }
 
@@ -57,7 +73,7 @@ function strip(options) {
     while (++index < length) {
       key = keep[index]
 
-      if (!own.call(defaults, key)) {
+      if (!own.call(handlers, key)) {
         throw new Error(
           'Invalid `keep` option: No modifier is defined for node type `' +
             key +

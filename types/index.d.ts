@@ -1,6 +1,7 @@
 // TypeScript Version: 3.0
 
 import {Plugin} from 'unified'
+import {Node} from 'unist'
 
 declare namespace strip {
   interface Options {
@@ -34,6 +35,11 @@ declare namespace strip {
       | 'footnoteReference'
       | 'footnoteDefinition'
     >
+
+    /**
+     * List of additional node types to remove or replace.
+     */
+    remove?: Array<string | [string, (node: Node) => Node]>
   }
 }
 

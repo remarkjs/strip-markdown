@@ -4,6 +4,7 @@ var test = require('tape')
 var remark = require('remark')
 var gfm = require('remark-gfm')
 var footnotes = require('remark-footnotes')
+var directive = require('remark-directive')
 var u = require('unist-builder')
 var strip = require('.')
 
@@ -11,6 +12,7 @@ function proc(value, options) {
   return remark()
     .use(gfm)
     .use(footnotes)
+    .use(directive)
     .use(strip, options)
     .processSync(value)
     .toString()
@@ -114,6 +116,34 @@ test('stripMarkdown()', function (t) {
     },
     /Error: Invalid `keep` option/,
     'invalid `keep` option'
+  )
+
+  // "remove" option
+  t.equal(
+    proc('I read this :cite[smith04]!', {remove: ['textDirective']}),
+    'I read this !',
+    'remove directive'
+  )
+  t.equal(
+    proc(
+      'A :i[lovely] language known as :abbr[HTML]{title="HyperText Markup Language"}.',
+      {
+        remove: [
+          [
+            'textDirective',
+            (node) => {
+              if (node.name === 'abbr') {
+                return {type: 'text', value: node.attributes.title}
+              }
+
+              return node.children
+            }
+          ]
+        ]
+      }
+    ),
+    'A lovely language known as HyperText Markup Language.',
+    'replace directive'
   )
 
   t.end()
