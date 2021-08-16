@@ -1,13 +1,13 @@
 /* eslint-env browser */
-import unified from 'unified'
-import parse from 'remark-parse'
-import stringify from 'remark-stringify'
-import strip from 'strip-markdown'
+import {unified} from 'unified'
+import remarkParse from 'remark-parse'
+import remarkStringify from 'remark-stringify'
+import stripMarkdown from 'strip-markdown'
 
 var processor = unified()
-  .use(parse)
-  .use(stringify)
-  .use(strip)
+  .use(remarkParse)
+  .use(remarkStringify)
+  .use(stripMarkdown)
 
 var $input = document.querySelector('[autofocus]')
 var $output = document.querySelector('[readonly]')
