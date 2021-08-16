@@ -1,11 +1,8 @@
-'use strict'
-
 /* eslint-env browser */
-
-var unified = require('unified')
-var parse = require('remark-parse')
-var stringify = require('remark-stringify')
-var strip = require('strip-markdown')
+import unified from 'unified'
+import parse from 'remark-parse'
+import stringify from 'remark-stringify'
+import strip from 'strip-markdown'
 
 var processor = unified()
   .use(parse)

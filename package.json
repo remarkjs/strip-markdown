@@ -8,9 +8,10 @@
   "contributors": [
     "Titus Wormer <tituswormer@gmail.com> (https://wooorm.com)"
   ],
+  "type": "module",
   "devDependencies": {
-    "browserify": "^16.0.0",
     "cssnano": "^4.0.0",
+    "esbuild": "^0.12.20",
     "postcss-cli": "^6.0.0",
     "postcss-preset-env": "^6.0.0",
     "prettier": "^1.0.0",
@@ -24,13 +25,12 @@
     "strip-markdown": "^3.0.0",
     "stylelint": "^11.0.0",
     "stylelint-config-standard": "^19.0.0",
-    "tinyify": "^2.0.0",
     "unified": "^8.0.0",
     "xo": "^0.25.0"
   },
   "scripts": {
     "format": "remark . -qfo && prettier --write \"**/*.js\" && xo --fix && stylelint src/index.css --fix",
-    "build:js": "browserify src -p tinyify -o dest/index.js",
+    "build:js": "esbuild src/index.js --bundle --minify --target=es6 --outfile=dest/index.nomodule.js && esbuild src/index.js --bundle --minify --target=es2020 --format=esm --outfile=dest/index.module.js",
     "build:css": "postcss src/index.css -o dest/index.css",
     "build:html": "rehype -u preset-minify -u prevent-favicon-request src -o dest",
     "build": "npm run build:js && npm run build:css && npm run build:html",
