@@ -7,7 +7,6 @@
 import test from 'tape'
 import {remark} from 'remark'
 import remarkGfm from 'remark-gfm'
-import remarkFootnotes from 'remark-footnotes'
 import remarkDirective from 'remark-directive'
 import {u} from 'unist-builder'
 import stripMarkdown from './index.js'
@@ -20,7 +19,6 @@ import stripMarkdown from './index.js'
 function proc(value, options) {
   return remark()
     .use(remarkGfm)
-    .use(remarkFootnotes)
     .use(remarkDirective)
     .use(stripMarkdown, options)
     .processSync(value)
@@ -132,9 +130,6 @@ test('stripMarkdown()', (t) => {
 
   // "remove" option
   t.equal(
-    // To do: once `remark-directive` is typed and registered, this will
-    // magically be registered as a known node.
-    // @ts-expect-error: custom node.
     proc('I read this :cite[smith04]!', {remove: ['textDirective']}),
     'I read this !',
     'remove directive'
@@ -144,9 +139,6 @@ test('stripMarkdown()', (t) => {
       'A :i[lovely] language known as :abbr[HTML]{title="HyperText Markup Language"}.',
       {
         remove: [
-          // To do: once `remark-directive` is typed and registered, this will
-          // magically be registered as a known node.
-          // @ts-expect-error: custom node.
           [
             'textDirective',
             (
