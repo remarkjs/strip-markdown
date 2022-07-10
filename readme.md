@@ -58,7 +58,7 @@ The default export is `stripMarkdown`.
 
 ### `unified().use(stripMarkdown[, options])`
 
-Plugin remove markdown formatting.
+Plugin to remove markdown formatting.
 
 *   Removes `html` ([*note*][gh-19]), `code`, `horizontalRule`, `table`, `yaml`,
     `toml`, and their content
