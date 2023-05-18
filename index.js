@@ -6,7 +6,7 @@
  *
  * @callback Handler
  * @param {any} node
- * @returns {Node|Node[]} node
+ * @returns {Node|Node[]|undefined} node
  *
  * @typedef {Partial<Record<Type, Handler>>} Handlers
  *
@@ -117,12 +117,12 @@ export default function stripMarkdown(options = {}) {
 
   /**
    * @param {Node} node
-   * @returns {Node|Node[]}
+   * @returns {Node|Node[]|undefined}
    */
   function one(node) {
     /** @type {Type} */
     const type = node.type
-    /** @type {Node|Node[]} */
+    /** @type {Node|Node[]|undefined} */
     let result = node
 
     if (type in map) {
@@ -132,7 +132,7 @@ export default function stripMarkdown(options = {}) {
 
     result = Array.isArray(result) ? all(result) : result
 
-    if ('children' in result) {
+    if (result && 'children' in result) {
       // @ts-expect-error: assume content models match.
       result.children = all(result.children)
     }
@@ -153,8 +153,8 @@ export default function stripMarkdown(options = {}) {
       const value = one(nodes[index])
 
       if (Array.isArray(value)) {
-        result.push(...value.flatMap((d) => one(d)))
-      } else {
+        result.push(...all(value))
+      } else if (value) {
         result.push(value)
       }
     }
@@ -197,7 +197,8 @@ function clean(values) {
  */
 function image(node) {
   const title = 'title' in node ? node.title : ''
-  return {type: 'text', value: node.alt || title || ''}
+  const value = node.alt || title || ''
+  return value ? {type: 'text', value} : undefined
 }
 
 /**
@@ -221,7 +222,7 @@ function paragraph(node) {
  * @param {Extract<Node, import('unist').Parent>} node
  */
 function children(node) {
-  return node.children || []
+  return node.children
 }
 
 /**
@@ -235,5 +236,5 @@ function lineBreak() {
  * @type {Handler}
  */
 function empty() {
-  return {type: 'text', value: ''}
+  return undefined
 }
