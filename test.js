@@ -116,7 +116,7 @@ test('stripMarkdown()', (t) => {
   )
   t.equal(
     proc('- **Hello**\n\n- World!', {keep: ['list', 'listItem']}),
-    '*   Hello\n\n*   World!',
+    '* Hello\n\n* World!',
     'keep lists'
   )
   t.throws(
@@ -130,6 +130,7 @@ test('stripMarkdown()', (t) => {
 
   // "remove" option
   t.equal(
+    // @ts-expect-error: textDirective from mdast-util-directive.
     proc('I read this :cite[smith04]!', {remove: ['textDirective']}),
     'I read this !',
     'remove directive'
@@ -139,6 +140,7 @@ test('stripMarkdown()', (t) => {
       'A :i[lovely] language known as :abbr[HTML]{title="HyperText Markup Language"}.',
       {
         remove: [
+          // @ts-expect-error: textDirective from mdast-util-directive.
           [
             'textDirective',
             (
