@@ -34,12 +34,12 @@
     "index.js"
   ],
   "dependencies": {
-    "@types/mdast": "^4.0.0",
-    "@types/unist": "^3.0.0",
     "unified": "^11.0.0"
   },
   "devDependencies": {
+    "@types/mdast": "^4.0.0",
     "@types/tape": "^5.0.0",
+    "@types/unist": "^3.0.0",
     "c8": "^8.0.0",
     "prettier": "^3.0.0",
     "remark": "^15.0.0",
