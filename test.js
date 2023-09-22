@@ -1,6 +1,6 @@
 /**
  * @typedef {import('unist').Node} Node
- * @typedef {import('mdast').Content} Content
+ * @typedef {import('mdast').RootContent} RootContent
  * @typedef {import('./index.js').Options} Options
  */
 
@@ -144,7 +144,7 @@ test('stripMarkdown()', (t) => {
           [
             'textDirective',
             (
-              /** @type {Node & {children: Content[], name: string, attributes: Record<string, string>}} */ node
+              /** @type {Node & {children: RootContent[], name: string, attributes: Record<string, string>}} */ node
             ) => {
               if (node.name === 'abbr') {
                 return {type: 'text', value: node.attributes.title}
