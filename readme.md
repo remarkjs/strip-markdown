@@ -37,12 +37,11 @@ npm install strip-markdown
 import {remark} from 'remark'
 import strip from 'strip-markdown'
 
-remark()
+const file = await remark()
   .use(strip)
   .process('Some *emphasis*, **importance**, and `code`.')
-  .then((file) => {
-    console.log(String(file))
-  })
+
+console.log(String(file))
 ```
 
 Yields:
