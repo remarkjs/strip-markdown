@@ -4,15 +4,15 @@
   "description": "remark plugin to remove markdown formatting",
   "license": "MIT",
   "keywords": [
-    "unified",
+    "markdown",
+    "mdast",
+    "plain",
+    "plugin",
     "remark",
     "remark-plugin",
-    "plugin",
-    "mdast",
-    "markdown",
     "text",
-    "plain",
-    "text"
+    "text",
+    "unified"
   ],
   "repository": "remarkjs/strip-markdown",
   "bugs": "https://github.com/remarkjs/strip-markdown/issues",
@@ -27,7 +27,7 @@
   ],
   "sideEffects": false,
   "type": "module",
-  "exports": "./index.js",
+  "main": "index.js",
   "types": "index.d.ts",
   "files": [
     "index.d.ts",
@@ -43,7 +43,7 @@
     "c8": "^8.0.0",
     "prettier": "^3.0.0",
     "remark": "^15.0.0",
-    "remark-cli": "^12.0.0",
+    "remark-cli": "^11.0.0",
     "remark-directive": "^3.0.0",
     "remark-gfm": "^4.0.0",
     "remark-preset-wooorm": "^9.0.0",
@@ -55,38 +55,36 @@
   },
   "scripts": {
     "build": "tsc --build --clean && tsc --build && type-coverage",
-    "format": "prettier . -w --log-level warn && xo --fix",
+    "format": "remark . --frail --output --quiet && prettier . --log-level warn --write && xo --fix",
+    "prepack": "npm run build && npm run format",
+    "test": "npm run build && npm run format && npm run test-coverage",
     "test-api": "node --conditions development test.js",
-    "test-coverage": "c8 --check-coverage --branches 100 --functions 100 --lines 100 --statements 100 --reporter lcov npm run test-api",
-    "test": "npm run build && npm run format && npm run test-coverage"
+    "test-coverage": "c8 --100 --reporter lcov npm run test-api"
   },
   "prettier": {
-    "tabWidth": 2,
-    "useTabs": false,
-    "singleQuote": true,
     "bracketSpacing": false,
+    "singleQuote": true,
     "semi": false,
-    "trailingComma": "none"
-  },
-  "xo": {
-    "prettier": true,
-    "ignores": [
-      "types/index.d.ts"
-    ]
+    "tabWidth": 2,
+    "trailingComma": "none",
+    "useTabs": false
   },
   "remarkConfig": {
     "plugins": [
-      "preset-wooorm"
+      "remark-preset-wooorm"
     ]
   },
   "typeCoverage": {
     "atLeast": 100,
     "detail": true,
-    "strict": true,
     "ignoreCatch": true,
     "#": "needed `any`s",
     "ignoreFiles": [
       "index.d.ts"
-    ]
+    ],
+    "strict": true
+  },
+  "xo": {
+    "prettier": true
   }
 }
