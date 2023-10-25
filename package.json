@@ -91,6 +91,14 @@
     "strict": true
   },
   "xo": {
+    "overrides": [
+      {
+        "files": "**/*.d.ts",
+        "rules": {
+          "@typescript-eslint/consistent-type-definitions": "off"
+        }
+      }
+    ],
     "prettier": true
   }
 }
