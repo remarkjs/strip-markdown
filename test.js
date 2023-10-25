@@ -17,13 +17,16 @@ import stripMarkdown from './index.js'
  * @returns {string}
  */
 function proc(value, options) {
-  return remark()
-    .use(remarkGfm)
-    .use(remarkDirective)
-    .use(stripMarkdown, options)
-    .processSync(value)
-    .toString()
-    .trimEnd()
+  return (
+    remark()
+      .use(remarkGfm)
+      .use(remarkDirective)
+      // @ts-expect-error: to do: fix types.
+      .use(stripMarkdown, options)
+      .processSync(value)
+      .toString()
+      .trimEnd()
+  )
 }
 
 test('stripMarkdown()', (t) => {

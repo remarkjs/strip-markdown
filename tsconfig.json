@@ -1,15 +1,15 @@
 {
-  "include": ["*.js"],
   "compilerOptions": {
-    "target": "es2022",
-    "lib": ["es2022"],
-    "module": "node16",
-    "allowJs": true,
     "checkJs": true,
+    "customConditions": ["development"],
     "declaration": true,
     "emitDeclarationOnly": true,
-    "allowSyntheticDefaultImports": true,
-    "skipLibCheck": true,
-    "strict": true
-  }
+    "exactOptionalPropertyTypes": true,
+    "lib": ["es2020"],
+    "module": "node16",
+    "strict": true,
+    "target": "es2020"
+  },
+  "exclude": ["coverage/", "node_modules/"],
+  "include": ["**/*.js"]
 }
