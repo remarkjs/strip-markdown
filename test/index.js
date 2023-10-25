@@ -3,7 +3,7 @@
 /**
  * @typedef {import('mdast').PhrasingContent} PhrasingContent
  * @typedef {import('mdast-util-directive').TextDirective} TextDirective
- * @typedef {import('../index.js').Options} Options
+ * @typedef {import('strip-markdown').Options} Options
  */
 
 import assert from 'node:assert/strict'
@@ -11,11 +11,11 @@ import test from 'node:test'
 import {remark} from 'remark'
 import remarkDirective from 'remark-directive'
 import remarkGfm from 'remark-gfm'
-import stripMarkdown from '../index.js'
+import stripMarkdown from 'strip-markdown'
 
 test('stripMarkdown', async function (t) {
   await t.test('should expose the public api', async function () {
-    assert.deepEqual(Object.keys(await import('../index.js')).sort(), [
+    assert.deepEqual(Object.keys(await import('strip-markdown')).sort(), [
       'default'
     ])
   })
