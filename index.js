@@ -1,7 +1,7 @@
 /**
- * @typedef {import('mdast').Content} Content
+ * @typedef {import('mdast').RootContent} RootContent
  * @typedef {import('mdast').Root} Root
- * @typedef {Root|Content} Node
+ * @typedef {Root|RootContent} Node
  * @typedef {Node['type']} Type
  *
  * @callback Handler
