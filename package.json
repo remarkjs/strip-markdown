@@ -30,6 +30,7 @@
   "main": "index.js",
   "types": "index.d.ts",
   "files": [
+    "lib/",
     "index.d.ts",
     "index.js"
   ],
@@ -80,7 +81,7 @@
     "ignoreCatch": true,
     "#": "needed `any`s",
     "ignoreFiles": [
-      "index.d.ts"
+      "lib/index.d.ts"
     ],
     "strict": true
   },
