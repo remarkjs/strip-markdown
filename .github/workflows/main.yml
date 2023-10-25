@@ -1,4 +1,3 @@
-name: main
 on:
   - pull_request
   - push
@@ -18,5 +17,5 @@ jobs:
       matrix:
         node:
           - lts/gallium
-          - lts/hydrogen
           - node
+name: main
