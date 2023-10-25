@@ -51,14 +51,14 @@ npm install strip-markdown
 In Deno with [`esm.sh`][esmsh]:
 
 ```js
-import stripMarkdown from 'https://esm.sh/strip-markdown@5'
+import stripMarkdown from 'https://esm.sh/strip-markdown@6'
 ```
 
 In browsers with [`esm.sh`][esmsh]:
 
 ```html
 <script type="module">
-  import stripMarkdown from 'https://esm.sh/strip-markdown@5?bundle'
+  import stripMarkdown from 'https://esm.sh/strip-markdown@6?bundle'
 </script>
 ```
 
