@@ -9,13 +9,17 @@ const processor = unified()
   .use(remarkStringify)
   .use(stripMarkdown)
 
-const $input = document.querySelector('[autofocus]')
-const $output = document.querySelector('[readonly]')
+const $input = /** @type {HTMLTextAreaElement} */ (
+  document.querySelector('[autofocus]')
+)
+const $output = /** @type {HTMLTextAreaElement} */ (
+  document.querySelector('[readonly]')
+)
 
 $input.addEventListener('input', oninputchange)
 
 oninputchange()
 
 function oninputchange() {
-  $output.textContent = processor.processSync($input.value).toString()
+  $output.textContent = String(processor.processSync($input.value))
 }

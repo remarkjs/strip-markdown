@@ -25,6 +25,8 @@
     "strip-markdown": "^6.0.0",
     "stylelint": "^16.0.0",
     "stylelint-config-standard": "^36.0.0",
+    "type-coverage": "^2.0.0",
+    "typescript": "^5.0.0",
     "unified": "^11.0.0",
     "xo": "^0.59.0"
   },
@@ -53,8 +55,13 @@
     ]
   },
   "repository": "remarkjs/strip-markdown",
+  "typeCoverage": {
+    "atLeast": 100,
+    "strict": true
+  },
   "type": "module",
   "scripts": {
+    "build": "tsc --build --clean && tsc --build && type-coverage",
     "format": "remark --frail --output --quiet -- . && prettier --log-level warn --write -- . && xo && stylelint src/index.css --fix",
     "generate:css": "postcss --output dest/index.css -- src/index.css",
     "generate:html": "rehype --output dest/ --use rehype-preset-minify --use rehype-prevent-favicon-request -- src/",
@@ -62,7 +69,7 @@
     "generate:js:nomodule": "esbuild src/index.js --bundle --conditions=browser,production --define:process.env.NODE_ENV=\\\"production\\\" --loader:.js=jsx --log-level=warning --minify --outfile=dest/index.nomodule.js --target=es6",
     "generate:js": "npm run generate:js:module && npm run generate:js:nomodule",
     "generate": "npm run generate:css && npm run generate:html && npm run generate:js",
-    "test": "npm run format && npm run generate"
+    "test": "npm run build && npm run format && npm run generate"
   },
   "stylelint": {
     "extends": "stylelint-config-standard"
