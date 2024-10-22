@@ -1,8 +1,8 @@
 /* eslint-env browser */
-import {unified} from 'unified'
 import remarkParse from 'remark-parse'
 import remarkStringify from 'remark-stringify'
 import stripMarkdown from 'strip-markdown'
+import {unified} from 'unified'
 
 const processor = unified()
   .use(remarkParse)

@@ -2,14 +2,37 @@
   box-sizing: border-box;
 }
 
+a {
+  color: #0367d8;
+  text-decoration: none;
+  transition: 200ms;
+  transition-property: color;
+}
+
+a:hover,
+a:focus,
+a:target {
+  color: inherit;
+}
+
 body {
   font-family: system-ui;
   margin: 0;
 }
 
+h1 {
+  font-size: 3em;
+}
+
+h1,
+p,
+textarea {
+  margin: calc(1em + 1ex) 0;
+}
+
 main {
-  max-width: 40em;
   margin: 0 auto;
+  max-width: 40em;
   padding: 0 calc(1em + 1ex);
 }
 
@@ -21,45 +44,17 @@ main {
   }
 }
 
-h1 {
-  font-size: 3em;
-}
-
-a {
-  text-decoration: none;
-  color: #0367d8;
-  transition: 200ms;
-  transition-property: color;
-}
-
-a:hover,
-a:focus,
-a:target {
-  color: inherit;
-}
-
-h1,
-p,
 textarea {
-  margin: calc(1em + 1ex) 0;
-}
-
-textarea {
-  font-size: 1em;
-  font-family:
-    SFMono-Regular,
-    Consolas,
-    "Liberation Mono",
-    Menlo,
-    monospace;
+  background-color: hsl(0deg 0% 97.5%);
+  border-radius: 3px;
+  border: 1px solid hsl(214deg 13% 90%);
   color: inherit;
   display: block;
-  max-width: 100%;
-  background-color: hsl(0deg 0% 97.5%);
+  font-family: SFMono-Regular, Consolas, 'Liberation Mono', Menlo, monospace;
+  font-size: 1em;
   margin: -1px;
-  border: 1px solid hsl(214deg 13% 90%);
+  max-width: 100%;
   padding: calc(0.5 * (1em + 1ex));
-  border-radius: 3px;
 }
 
 @media (prefers-color-scheme: dark) {
